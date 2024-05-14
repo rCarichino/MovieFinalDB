@@ -48,8 +48,8 @@ class AppRoute {
       GoRoute(
           path: Routes.details.path,
           name: Routes.details.name,
-          builder: (context, state) => DetailPage()),
-      //DetailsPage(id: state.pathParameters["id"]!)),
+          builder: (context, state) =>
+              DetailPage(id: state.pathParameters["id"]!)),
       GoRoute(
         path: Routes.home.path,
         name: Routes.home.name,
