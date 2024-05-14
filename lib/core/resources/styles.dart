@@ -1,6 +1,6 @@
-import 'package:final_boss/core/resources/palette.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:moviedb/core/resources/palette.dart';
 
 import 'dimens.dart';
 
