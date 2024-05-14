@@ -1,6 +1,8 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:moviedb/features/movie/presentation/details/detail_page.dart';
+import 'package:moviedb/features/movie/presentation/list/list_page.dart';
 import 'package:moviedb/features/splashscreen/splash_screen_page.dart';
 
 enum Routes {
@@ -46,12 +48,12 @@ class AppRoute {
       GoRoute(
           path: Routes.details.path,
           name: Routes.details.name,
-          builder: (context, state) => Container()),
+          builder: (context, state) => DetailPage()),
       //DetailsPage(id: state.pathParameters["id"]!)),
       GoRoute(
         path: Routes.home.path,
         name: Routes.home.name,
-        builder: (context, state) => Container(),
+        builder: (context, state) => ListPage(),
       ),
     ],
     initialLocation: Routes.splashScreen.path,
