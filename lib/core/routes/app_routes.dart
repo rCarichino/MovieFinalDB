@@ -1,6 +1,7 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:moviedb/features/splashscreen/splash_screen_page.dart';
 
 enum Routes {
   root("/"),
@@ -27,7 +28,7 @@ class AppRoute {
       GoRoute(
         path: Routes.splashScreen.path,
         name: Routes.splashScreen.name,
-        builder: (context, state) => Container(),
+        builder: (context, state) => SplashScreenPage(),
       ),
       GoRoute(
         path: Routes.root.path,
