@@ -6,7 +6,7 @@ import '../entities/search_params.dart';
 
 abstract class MovieRepository{
 
-  Future<Either<Failure, List<Movie>>> fetchListMovies(SearchParams SearchParams);
+  Future<Either<Failure, List<Movie>>> fetchListMovies(SearchParams searchParams);
   Future<Either<Failure, List<Movie>>> fetchSearchedMovies(SearchParams searchParams);
 
 }

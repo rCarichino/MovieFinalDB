@@ -24,8 +24,8 @@ class Movie {
     video = json['video'];
   }
   bool? adult;
-  List<int>? genreIds;
-  int? id;
+  List<num>? genreIds;
+  num? id;
   String? originalLanguage;
   String? originalTitle;
   String? overview;
@@ -34,8 +34,8 @@ class Movie {
   String? title;
   bool? video;
 Movie copyWith({  bool? adult,
-  List<int>? genreIds,
-  int? id,
+  List<num>? genreIds,
+  num? id,
   String? originalLanguage,
   String? originalTitle,
   String? overview,
