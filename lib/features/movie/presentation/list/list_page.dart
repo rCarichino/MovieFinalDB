@@ -37,9 +37,7 @@ class ListPage extends StatelessWidget {
                         color: Palette.text,
                       ),
                       validator: (value) => _validate(value),
-                      onFieldSubmitted: (value) => context
-                          .read<ListCubit>()
-                          .getSearchedMovies(query: value.trim())),
+                      onFieldSubmitted: (value) => context.read<ListCubit>().getSearchedMovies(query: value.trim())),
                 ],
               ),
             );
