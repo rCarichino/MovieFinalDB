@@ -42,5 +42,5 @@ void _useCase() {
 }
 
 void _cubit() {
-  getIt.registerFactory(() => ListCubit(postPopularMovie: getIt(), postSearchedMovie: getIt()));
+  getIt.registerFactory(() => ListCubit(getPopularMovie: getIt(), getSearchedMovie: getIt()));
 }

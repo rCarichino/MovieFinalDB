@@ -10,16 +10,16 @@ import '../../../domain/usecases/get_searched_movie.dart';
 part 'list_state.dart';
 
 class ListCubit extends Cubit<ListState> {
-  final GetListMovie postPopularMovie;
-  final GetSearchedMovie postSearchedMovie;
+  final GetListMovie getPopularMovie;
+  final GetSearchedMovie getSearchedMovie;
 
-  ListCubit({required this.postPopularMovie, required this.postSearchedMovie})
+  ListCubit({required this.getPopularMovie, required this.getSearchedMovie})
       : super(ListState.initial());
 
   Future<void> getListMovies({int? page}) async {
     emit(state.copyWith(isLoading: true));
     final searchParams = SearchParams(page: page);
-    final data = await postPopularMovie.call(searchParams);
+    final data = await getPopularMovie.call(searchParams);
     data.fold(
         (failure) => emit(state.copyWith(
             error: (failure as ServerFailure).message, isLoading: false)),
@@ -31,7 +31,7 @@ class ListCubit extends Cubit<ListState> {
       {String? query, int? page, String? year}) async {
     emit(state.copyWith(isLoading: true));
     final searchParams = SearchParams(query: query, page: page, year: year);
-    final data = await postSearchedMovie.call(searchParams);
+    final data = await getSearchedMovie.call(searchParams);
     data.fold(
         (failure) => emit(state.copyWith(
             error: (failure as ServerFailure).message, isLoading: false)),
