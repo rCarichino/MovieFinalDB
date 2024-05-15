@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import '../../core/resources/dimens.dart';
 import '../../core/resources/images.dart';
 import '../../core/resources/styles.dart';
 import '../../core/routes/app_routes.dart';
+import '../movie/presentation/list/cubits/list_cubit.dart';
 
 
 class SplashScreenPage extends StatefulWidget {
@@ -16,6 +18,8 @@ class _SplashScreenPageState extends State<SplashScreenPage> {
   void initState() {
     super.initState();
     Future.delayed(const Duration(seconds: 2), () {
+      final listCubit = context.read<ListCubit>();
+      listCubit.getListMovies();
       context.goNamed(Routes.root.name);
     });
   }

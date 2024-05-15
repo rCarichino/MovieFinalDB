@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:moviedb/core/resources/palette.dart';
 
+import '../../../../core/resources/images.dart';
 import '../../../../core/routes/app_routes.dart';
 import 'cubits/list_cubit.dart';
 
@@ -37,7 +38,9 @@ class ListPage extends StatelessWidget {
                         color: Palette.text,
                       ),
                       validator: (value) => _validate(value),
-                      onFieldSubmitted: (value) => context.read<ListCubit>().getSearchedMovies(query: value.trim())),
+                      onFieldSubmitted: (value) => context
+                          .read<ListCubit>()
+                          .getSearchedMovies(query: value.trim())),
                 ],
               ),
             );
@@ -52,8 +55,11 @@ class ListPage extends StatelessWidget {
           if (state.error.isNotEmpty && !state.isLoading) {
             return ListView.separated(
               itemBuilder: (context, index) => GestureDetector(
-                onTap: () => GoRouter.of(context)
-                    .go("/${Routes.details.name}/:${state.movie[index].id}"),
+                onTap: () {
+                  final String detailsRoute =
+                      "/${Routes.details.name}/${index.toString()}";
+                  context.go(detailsRoute);
+                },
                 child: Column(
                   children: [
                     Text("${state.movie[index].originalTitle}"),
@@ -65,9 +71,12 @@ class ListPage extends StatelessWidget {
               separatorBuilder: (context, index) => const Divider(),
             );
           }
-          return const Center(
-            child: Text("Search for a Movie"),
-          );
+          return Center(
+              child: Image.asset(
+            Images.loading,
+            height: 125.0,
+            width: 125.0,
+          ));
         },
       ),
     );
@@ -78,4 +87,5 @@ String? _validate(value) {
   if (value == null) {
     return "Look for something to search first";
   }
+  return null;
 }
