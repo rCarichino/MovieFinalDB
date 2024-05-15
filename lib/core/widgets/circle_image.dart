@@ -14,8 +14,6 @@ class CircleImage extends StatelessWidget {
   Widget build(BuildContext context) {
     /// TODO Need to change with Fix on error image url
     return ClipRRect(
-      borderRadius: BorderRadius.circular(360),
-
       /// 360 degree circle
       child: CachedNetworkImage(
         fit: BoxFit.cover,

@@ -73,23 +73,31 @@ class ListPage extends StatelessWidget {
               );
             }
             if (state.movie.isNotEmpty && !state.isLoading) {
-              return ListView.separated(
-                itemBuilder: (context, index) => GestureDetector(
-                  onTap: () {
-                    final String detailsRoute =
-                        "/${Routes.details.name}/${index.toString()}";
-                    context.go(detailsRoute);
-                  },
-                  child: Column(
-                    children: [
-                      Text("${state.movie[index].originalTitle}"),
-                      Text("${state.movie[index].title}"),
-                      CircleImage(url: "https://image.tmdb.org/t/p/original${state.movie[index].posterPath}")
-                    ],
+              return Center(
+                heightFactor: 1,
+                child: Container(
+                  color: Palette.backgroundDark,
+                  margin: EdgeInsets.only(top: 10),
+                  padding: EdgeInsets.all(10),
+                  width: MediaQuery.of(context).size.width * 0.9,
+                  height: MediaQuery.of(context).size.height * 0.8,
+                  child: ListView.separated(
+                    itemBuilder: (context, index) => GestureDetector(
+                      onTap: () {
+                        final String detailsRoute =
+                            "/${Routes.details.name}/${index.toString()}";
+                        context.go(detailsRoute);
+                      },
+                      child: Column(
+                        children: [
+                          CircleImage(url: "https://image.tmdb.org/t/p/original${state.movie[index].posterPath}")
+                        ],
+                      ),
+                    ),
+                    itemCount: state.movie.length,
+                    separatorBuilder: (context, index) => const Divider(),
                   ),
                 ),
-                itemCount: state.movie.length,
-                separatorBuilder: (context, index) => const Divider(),
               );
             }
             return Center(
