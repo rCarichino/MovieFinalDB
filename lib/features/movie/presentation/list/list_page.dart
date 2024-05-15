@@ -60,7 +60,7 @@ class ListPage extends StatelessWidget {
                 TextFormField(
                     decoration: InputDecoration(
                       border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(10),
+                          borderRadius: BorderRadius.circular(Dimens.cornerRadius),
                           borderSide: BorderSide.none),
                       filled: true,
                       fillColor: Palette.textDark,
@@ -88,25 +88,25 @@ class ListPage extends StatelessWidget {
             heightFactor: 1,
             child: Container(
               color: Palette.backgroundDark,
-              margin: const EdgeInsets.only(top: 10),
-              padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 5),
+              margin:  EdgeInsets.only(top: Dimens.space12),
+              padding:  EdgeInsets.symmetric(vertical: Dimens.space12, horizontal: Dimens.space6),
               child:
                   BlocBuilder<ListCubit, ListState>(builder: (context, state) {
                 if (state.isLoading) {
                   return Center(
                     child: Image.asset(
                       Images.loading,
-                      height: 125.0,
-                      width: 125.0,
+                      height: Dimens.imageW,
+                      width: Dimens.imageW,
                     ),
                   );
                 }
                 if (state.movie.isNotEmpty && !state.isLoading) {
                   return GridView.builder(
                     gridDelegate:
-                        const SliverGridDelegateWithFixedCrossAxisCount(
-                      crossAxisCount: 2,
-                      mainAxisSpacing: 8,
+                         SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: Dimens.space2 as int,
+                      mainAxisSpacing: Dimens.space8,
                     ),
                     itemBuilder: (context, index) => GestureDetector(
                       onTap: () {
@@ -115,7 +115,7 @@ class ListPage extends StatelessWidget {
                         context.go(detailsRoute);
                       },
                       child: Container(
-                        padding: const EdgeInsets.all(5),
+                        padding:  EdgeInsets.all(Dimens.space6),
                         color: Palette.cardDark,
                         child: CachedNetworkImage(
                             placeholder: (context, url) =>
@@ -134,8 +134,8 @@ class ListPage extends StatelessWidget {
                 return Center(
                     child: Image.asset(
                   Images.loading,
-                  height: 125.0,
-                  width: 125.0,
+                  height: Dimens.imageW,
+                  width: Dimens.imageW,
                 ));
               }),
             ),
