@@ -71,7 +71,7 @@ class _LoginPageState extends State<LoginPage> {
                           Icons.alternate_email,
                           color: Theme.of(context).textTheme.bodyLarge?.color,
                         ),
-                        hintText: "eve.holt@reqres.in",
+                        hintText: "example@example.com",
                         hint: "email",
                         validator: (String? value) => validateEmail(value),
                       ),
@@ -119,7 +119,6 @@ class _LoginPageState extends State<LoginPage> {
                       ButtonText(
                         title: "Register",
                         onPressed: () {
-                          /// Direct to register page
                           context.pushNamed(Routes.register.name);
                         },
                       ),
