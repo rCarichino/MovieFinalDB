@@ -5,6 +5,8 @@ import 'package:moviedb/features/movie/presentation/details/detail_page.dart';
 import 'package:moviedb/features/movie/presentation/list/list_page.dart';
 import 'package:moviedb/features/splashscreen/splash_screen_page.dart';
 
+import '../../features/auth/presentation/login/login_page.dart';
+
 enum Routes {
   root("/"),
   splashScreen("/splashscreen"),
@@ -49,7 +51,7 @@ class AppRoute {
         GoRoute(
             path: Routes.login.path,
             name: Routes.login.name,
-            builder: (context, state) => Container()),
+            builder: (context, state) => LoginPage()),
         GoRoute(
             path: Routes.details.path,
             name: Routes.details.name,

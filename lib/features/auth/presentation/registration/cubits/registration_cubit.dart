@@ -19,7 +19,13 @@ class RegistrationCubit extends Cubit<RegistrationState> {
     final authParams = AuthParams(email: email, password: password);
     final userCredential = await createUser.call(authParams);
     userCredential.fold(
-        (failure) => emit(state.copyWith(error: (failure as ServerFailure).message)),
-        (userCredential) => emit(state.copyWith(authParams: authParams,userCredential: userCredential)));
+        (failure) =>
+            emit(state.copyWith(error: (failure as ServerFailure).message)),
+        (userCredential) => emit(state.copyWith(
+            authParams: authParams, userCredential: userCredential)));
+  }
+
+  void toggleShowPassword() {
+    emit(state.copyWith(showPassword: !state.showPassword));
   }
 }

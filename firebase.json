@@ -1,1 +1,30 @@
-{"flutter":{"platforms":{"android":{"default":{"projectId":"moviedb-220ce","appId":"1:97783231269:android:63d0081613ebb46ed660cc","fileOutput":"android/app/google-services.json"}},"ios":{"default":{"projectId":"moviedb-220ce","appId":"1:97783231269:ios:a80ff4d295e504e6d660cc","uploadDebugSymbols":false,"fileOutput":"ios/Runner/GoogleService-Info.plist"}},"dart":{"lib/firebase_options.dart":{"projectId":"moviedb-220ce","configurations":{"android":"1:97783231269:android:63d0081613ebb46ed660cc","ios":"1:97783231269:ios:a80ff4d295e504e6d660cc"}}}}}}
+{
+  "flutter": {
+    "platforms": {
+      "android": {
+        "default": {
+          "projectId": "moviedb-220ce",
+          "appId": "1:97783231269:android:63d0081613ebb46ed660cc",
+          "fileOutput": "android/app/google-services.json"
+        }
+      },
+      "ios": {
+        "default": {
+          "projectId": "moviedb-220ce",
+          "appId": "1:97783231269:ios:a80ff4d295e504e6d660cc",
+          "uploadDebugSymbols": false,
+          "fileOutput": "ios/Runner/GoogleService-Info.plist"
+        }
+      },
+      "dart": {
+        "lib/firebase_options.dart": {
+          "projectId": "moviedb-220ce",
+          "configurations": {
+            "android": "1:97783231269:android:63d0081613ebb46ed660cc",
+            "ios": "1:97783231269:ios:a80ff4d295e504e6d660cc"
+          }
+        }
+      }
+    }
+  }
+}
