@@ -1,29 +1,29 @@
 class RegisterResponse {
   RegisterResponse({
-    this.username,
+    this.email,
     this.password,
   });
 
   RegisterResponse.fromJson(dynamic json) {
-    username = json['username'];
+    email = json['username'];
     password = json['password'];
   }
 
-  String? username;
+  String? email;
   String? password;
 
   RegisterResponse copyWith({
-    String? username,
+    String? email,
     String? password,
   }) =>
       RegisterResponse(
-        username: username ?? this.username,
+        email: email ?? this.email,
         password: password ?? this.password,
       );
 
   Map<String, dynamic> toJson() {
     final map = <String, dynamic>{};
-    map['username'] = username;
+    map['username'] = email;
     map['password'] = password;
     return map;
   }

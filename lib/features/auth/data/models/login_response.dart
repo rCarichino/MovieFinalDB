@@ -1,35 +1,29 @@
 class LoginResponse {
   LoginResponse({
-    this.username,
-    this.password,
+    this.uid,
     this.token,
   });
 
   LoginResponse.fromJson(dynamic json) {
-    username = json['Username'];
-    password = json['Password'];
+    uid = json['Username'];
     token = json['Token'];
   }
 
-  String? username;
-  String? password;
+  String? uid;
   String? token;
 
   LoginResponse copyWith({
-    String? username,
-    String? password,
+    String? uid,
     String? token,
   }) =>
       LoginResponse(
-        username: username ?? this.username,
-        password: password ?? this.password,
+        uid: uid ?? this.uid,
         token: token ?? this.token,
       );
 
   Map<String, dynamic> toJson() {
     final map = <String, dynamic>{};
-    map['Username'] = username;
-    map['Password'] = password;
+    map['uid'] = uid;
     map['Token'] = token;
     return map;
   }
