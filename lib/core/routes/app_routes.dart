@@ -1,6 +1,8 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:moviedb/features/auth/presentation/login/cubits/login_cubit.dart';
 import 'package:moviedb/features/auth/presentation/registration/registration_page.dart';
 import 'package:moviedb/features/movie/presentation/details/detail_page.dart';
 import 'package:moviedb/features/movie/presentation/list/list_page.dart';
@@ -69,11 +71,14 @@ class AppRoute {
       routerNeglect: true,
       debugLogDiagnostics: kDebugMode,
 
-      redirect: (_, state) {
-        final bool isLoginPage = state.matchedLocation == Routes.login.path ||
-            state.matchedLocation == Routes.register.path;
-        if (isLoginPage) {
-          return Routes.root.path;
+      redirect: (ctx, state) {
+        final isHomePage = state.matchedLocation == Routes.home.path;
+        if(isHomePage && ctx.watch<LoginCubit>().state.user == null){
+          return Routes.login.path;
+        }
+        final bool isProfilePage = state.matchedLocation == Routes.profile.path;
+        if (isProfilePage && ctx.watch<LoginCubit>().state.user == null) {
+          return Routes.login.path;
         }
         return null;
       }
