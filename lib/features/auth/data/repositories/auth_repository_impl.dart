@@ -4,15 +4,12 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:moviedb/core/error/failure.dart';
 
 import 'package:moviedb/features/auth/domain/entities/auth_params.dart';
-import 'package:moviedb/utils/validator.dart';
 
 import '../../domain/repositories/auth_repository.dart';
-import '../datasources/auth_remote_datasources.dart';
 
 class AuthRepositoryImpl extends AuthRepository {
-  final AuthRemoteDataSources authRemoteDataSources;
 
-  AuthRepositoryImpl(this.authRemoteDataSources);
+  AuthRepositoryImpl();
 
   @override
   Future<Either<Failure, User>> login(AuthParams authParams) async {
