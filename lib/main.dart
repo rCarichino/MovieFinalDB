@@ -19,10 +19,13 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocProvider(
         create: (context) => getIt<ListCubit>(),
-        child: MaterialApp.router(
-          title: 'Movie DB',
-          theme: themeLight(context),
-          routerConfig: AppRoute.router,
+        child: SafeArea(
+          child: MaterialApp.router(
+            debugShowCheckedModeBanner: false,
+            title: 'Movie DB',
+            theme: themeLight(context),
+            routerConfig: AppRoute.router,
+          ),
         ));
   }
 }
