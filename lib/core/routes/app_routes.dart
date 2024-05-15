@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 import 'package:moviedb/features/auth/presentation/registration/registration_page.dart';
 import 'package:moviedb/features/movie/presentation/details/detail_page.dart';
 import 'package:moviedb/features/movie/presentation/list/list_page.dart';
+import 'package:moviedb/features/profile/presentation/profile/profile_page.dart';
 import 'package:moviedb/features/splashscreen/splash_screen_page.dart';
 
 import '../../features/auth/presentation/login/login_page.dart';
@@ -48,7 +49,7 @@ class AppRoute {
         GoRoute(
             path: Routes.profile.path,
             name: Routes.profile.name,
-            builder: (context, state) => Container()),
+            builder: (context, state) => const ProfilePage()),
         GoRoute(
             path: Routes.login.path,
             name: Routes.login.name,
@@ -75,5 +76,6 @@ class AppRoute {
           return Routes.root.path;
         }
         return null;
-      });
+      }
+      );
 }

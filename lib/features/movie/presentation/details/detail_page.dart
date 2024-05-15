@@ -32,7 +32,7 @@ class DetailPage extends StatelessWidget {
         ),
         leading: IconButton(
           onPressed: () {
-            GoRouter.of(context).go(Routes.home.path);
+            context.goNamed(Routes.home.name);
           },
           icon: const Icon(Icons.arrow_back),
         ),
