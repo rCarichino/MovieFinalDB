@@ -27,113 +27,121 @@ class ListPage extends StatelessWidget {
       return null;
     }
 
-    return DefaultTabController(
-        length: 3,
-        child: Scaffold(
-          appBar: AppBar(
-              flexibleSpace: Container(
-                decoration: const BoxDecoration(
-                    gradient: LinearGradient(
-                  colors: [Palette.redLatte, Palette.blueLatte],
-                  begin: Alignment.topLeft,
-                  end: Alignment.bottomRight,
-                )),
+    return Scaffold(
+      bottomNavigationBar: BottomNavigationBar(
+        items: <BottomNavigationBarItem>[
+          BottomNavigationBarItem(
+              icon: IconButton(
+                onPressed: () => context.goNamed(Routes.home.name),
+                icon: const Icon(Icons.movie),
               ),
-              title: Form(
-                key: formKey,
-                child: Column(
-                  children: [
-                    TextFormField(
-                        decoration: InputDecoration(
-                          border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(10),
-                              borderSide: BorderSide.none),
-                          filled: true,
-                          fillColor: Palette.textDark,
-                          hintText: "cerca un film",
-                        ),
-                        style: const TextStyle(
-                          fontFamily: "Poppins",
-                          fontWeight: FontWeight.w300,
-                          color: Palette.text,
-                        ),
-                        validator: (value) => _validate(value),
-                        onFieldSubmitted: (value) => context
-                            .read<ListCubit>()
-                            .getSearchedMovies(query: value.trim())),
-                  ],
-                ),
+              label: "Movies"),
+          BottomNavigationBarItem(
+              icon: IconButton(
+                icon: const Icon(Icons.person),
+                onPressed: () => context.goNamed(Routes.profile.name),
               ),
-              actions: [
-                IconButton(onPressed: () {}, icon: const Icon(Icons.search))
-              ]),
-          body: Column(
-            children: [
-              Expanded(
-                  child: TabBarView(
-                children: [
-                  Center(
-                    heightFactor: 1,
-                    child: Container(
-                      color: Palette.backgroundDark,
-                      margin: const EdgeInsets.only(top: 10),
-                      padding: const EdgeInsets.symmetric(
-                          vertical: 10, horizontal: 5),
-                      child: BlocBuilder<ListCubit, ListState>(
-                          builder: (context, state) {
-                        if (state.isLoading) {
-                          return Center(
-                            child: Image.asset(
-                              Images.loading,
-                              height: 125.0,
-                              width: 125.0,
-                            ),
-                          );
-                        }
-                        if (state.movie.isNotEmpty && !state.isLoading) {
-                          return GridView.builder(
-                            gridDelegate:
-                                const SliverGridDelegateWithFixedCrossAxisCount(
-                              crossAxisCount: 2,
-                              mainAxisSpacing: 8,
-                            ),
-                            itemBuilder: (context, index) => GestureDetector(
-                              onTap: () {
-                                final String detailsRoute =
-                                    "/${Routes.details.name}/${index.toString()}";
-                                context.go(detailsRoute);
-                              },
-                              child: Container(
-                                padding: const EdgeInsets.all(5),
-                                color: Palette.cardDark,
-                                child: CachedNetworkImage(
-                                    placeholder: (context, url) =>
-                                        const Loading(showMessage: false),
-                                    imageUrl: state.movie[index].posterPath !=
-                                            null
-                                        ? 'https://image.tmdb.org/t/p/w500${state.movie[index].posterPath}'
-                                        : "https://springerhealthcare.it/GIHTAD/wp-content/uploads/2021/03/placeholder.jpg"),
-                              ),
-                            ),
-                            itemCount: state.movie.length,
-                          );
-                        }
-                        if (state.movie.isEmpty && state.error == '') {
-                          errorDialog(context, "No data");
-                        }
-                        return Center(
-                            child: Image.asset(
-                          Images.loading,
-                          height: 125.0,
-                          width: 125.0,
-                        ));
-                      }),
-                    ),
-                  )
-                ],
-              ))
-            ],
+              label: "Profile")
+        ],
+      ),
+      appBar: AppBar(
+          flexibleSpace: Container(
+            decoration: const BoxDecoration(
+                gradient: LinearGradient(
+              colors: [Palette.redLatte, Palette.blueLatte],
+              begin: Alignment.topLeft,
+              end: Alignment.bottomRight,
+            )),
           ),
-        ));
+          title: Form(
+            key: formKey,
+            child: Column(
+              children: [
+                TextFormField(
+                    decoration: InputDecoration(
+                      border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(10),
+                          borderSide: BorderSide.none),
+                      filled: true,
+                      fillColor: Palette.textDark,
+                      hintText: "cerca un film",
+                    ),
+                    style: const TextStyle(
+                      fontFamily: "Poppins",
+                      fontWeight: FontWeight.w300,
+                      color: Palette.text,
+                    ),
+                    validator: (value) => _validate(value),
+                    onFieldSubmitted: (value) => context
+                        .read<ListCubit>()
+                        .getSearchedMovies(query: value.trim())),
+              ],
+            ),
+          ),
+          actions: [
+            IconButton(onPressed: () {}, icon: const Icon(Icons.search))
+          ]),
+      body: Column(
+        children: [
+          Expanded(
+              child: Center(
+            heightFactor: 1,
+            child: Container(
+              color: Palette.backgroundDark,
+              margin: const EdgeInsets.only(top: 10),
+              padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 5),
+              child:
+                  BlocBuilder<ListCubit, ListState>(builder: (context, state) {
+                if (state.isLoading) {
+                  return Center(
+                    child: Image.asset(
+                      Images.loading,
+                      height: 125.0,
+                      width: 125.0,
+                    ),
+                  );
+                }
+                if (state.movie.isNotEmpty && !state.isLoading) {
+                  return GridView.builder(
+                    gridDelegate:
+                        const SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: 2,
+                      mainAxisSpacing: 8,
+                    ),
+                    itemBuilder: (context, index) => GestureDetector(
+                      onTap: () {
+                        final String detailsRoute =
+                            "/${Routes.details.name}/${index.toString()}";
+                        context.go(detailsRoute);
+                      },
+                      child: Container(
+                        padding: const EdgeInsets.all(5),
+                        color: Palette.cardDark,
+                        child: CachedNetworkImage(
+                            placeholder: (context, url) =>
+                                const Loading(showMessage: false),
+                            imageUrl: state.movie[index].posterPath != null
+                                ? 'https://image.tmdb.org/t/p/w500${state.movie[index].posterPath}'
+                                : "https://springerhealthcare.it/GIHTAD/wp-content/uploads/2021/03/placeholder.jpg"),
+                      ),
+                    ),
+                    itemCount: state.movie.length,
+                  );
+                }
+                if (state.movie.isEmpty && state.error == '') {
+                  errorDialog(context, "No data");
+                }
+                return Center(
+                    child: Image.asset(
+                  Images.loading,
+                  height: 125.0,
+                  width: 125.0,
+                ));
+              }),
+            ),
+          )),
+        ],
+      ),
+    );
   }
 }
