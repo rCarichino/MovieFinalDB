@@ -2,9 +2,9 @@ import 'package:dartz/dartz.dart';
 
 import 'package:moviedb/core/error/failure.dart';
 
-import 'package:moviedb/features/auth/domain/entities/Login.dart';
+import 'package:moviedb/features/auth/domain/entities/login.dart';
 
-import 'package:moviedb/features/auth/domain/entities/Register.dart';
+import 'package:moviedb/features/auth/domain/entities/register.dart';
 
 import 'package:moviedb/features/auth/domain/entities/auth_params.dart';
 
