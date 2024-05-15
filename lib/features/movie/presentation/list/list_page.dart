@@ -64,7 +64,7 @@ class ListPage extends StatelessWidget {
                           borderSide: BorderSide.none),
                       filled: true,
                       fillColor: Palette.textDark,
-                      hintText: "cerca un film",
+                      hintText: "Search for a film",
                     ),
                     style: const TextStyle(
                       fontFamily: "Poppins",
