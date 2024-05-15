@@ -50,7 +50,13 @@ class ListPage extends StatelessWidget {
       body: BlocBuilder<ListCubit, ListState>(
         builder: (context, state) {
           if (state.isLoading) {
-            return const Center(child: CircularProgressIndicator());
+            return Center(
+              child: Image.asset(
+                Images.loading,
+                height: 125.0,
+                width: 125.0,
+              ),
+            );
           }
           if (state.error.isNotEmpty && !state.isLoading) {
             return ListView.separated(

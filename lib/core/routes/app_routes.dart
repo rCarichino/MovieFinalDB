@@ -11,6 +11,7 @@ enum Routes {
   login("/auth/login"),
   register("/auth/registration"),
   details("/details/:id"),
+  profile("/profile"),
   home("/home");
 
   const Routes(this.path);
@@ -26,38 +27,50 @@ class AppRoute {
   }
 
   static final GoRouter router = GoRouter(
-    routes: [
-      GoRoute(
-        path: Routes.splashScreen.path,
-        name: Routes.splashScreen.name,
-        builder: (context, state) => SplashScreenPage(),
-      ),
-      GoRoute(
-        path: Routes.root.path,
-        name: Routes.root.name,
-        redirect: (context, state) => Routes.home.path,
-      ),
-      GoRoute(
-          path: Routes.register.path,
-          name: Routes.register.name,
-          builder: (context, state) => Container()),
-      GoRoute(
-          path: Routes.login.path,
-          name: Routes.login.name,
-          builder: (context, state) => Container()),
-      GoRoute(
-          path: Routes.details.path,
-          name: Routes.details.name,
-          builder: (context, state) =>
-              DetailPage(id: state.pathParameters["id"]!)),
-      GoRoute(
-        path: Routes.home.path,
-        name: Routes.home.name,
-        builder: (context, state) => ListPage(),
-      ),
-    ],
-    initialLocation: Routes.splashScreen.path,
-    routerNeglect: true,
-    debugLogDiagnostics: kDebugMode,
-  );
+      routes: [
+        GoRoute(
+          path: Routes.splashScreen.path,
+          name: Routes.splashScreen.name,
+          builder: (context, state) => SplashScreenPage(),
+        ),
+        GoRoute(
+          path: Routes.root.path,
+          name: Routes.root.name,
+          redirect: (context, state) => Routes.home.path,
+        ),
+        GoRoute(
+            path: Routes.register.path,
+            name: Routes.register.name,
+            builder: (context, state) => Container()),
+        GoRoute(
+            path: Routes.profile.path,
+            name: Routes.profile.name,
+            builder: (context, state) => Container()),
+        GoRoute(
+            path: Routes.login.path,
+            name: Routes.login.name,
+            builder: (context, state) => Container()),
+        GoRoute(
+            path: Routes.details.path,
+            name: Routes.details.name,
+            builder: (context, state) =>
+                DetailPage(id: state.pathParameters["id"]!)),
+        GoRoute(
+          path: Routes.home.path,
+          name: Routes.home.name,
+          builder: (context, state) => ListPage(),
+        ),
+      ],
+      initialLocation: Routes.splashScreen.path,
+      routerNeglect: true,
+      debugLogDiagnostics: kDebugMode,
+
+      redirect: (_, state) {
+        final bool isLoginPage = state.matchedLocation == Routes.login.path ||
+            state.matchedLocation == Routes.register.path;
+        if (isLoginPage) {
+          return Routes.root.path;
+        }
+        return null;
+      });
 }
