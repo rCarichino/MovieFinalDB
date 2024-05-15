@@ -60,7 +60,7 @@ class ListPage extends StatelessWidget {
                 ),
               ),
               actions: [
-                IconButton(onPressed: (){}, icon: Icon(Icons.search))
+                IconButton(onPressed: () {}, icon: const Icon(Icons.search))
               ]),
           body: BlocBuilder<ListCubit, ListState>(builder: (context, state) {
             if (state.isLoading) {
@@ -77,25 +77,31 @@ class ListPage extends StatelessWidget {
                 heightFactor: 1,
                 child: Container(
                   color: Palette.backgroundDark,
-                  margin: EdgeInsets.only(top: 10),
-                  padding: EdgeInsets.all(10),
+                  margin: const EdgeInsets.only(top: 10),
+                  padding:
+                      const EdgeInsets.symmetric(vertical: 10, horizontal: 5),
                   width: MediaQuery.of(context).size.width * 0.9,
                   height: MediaQuery.of(context).size.height * 0.8,
-                  child: ListView.separated(
+                  child: GridView.builder(
+                    gridDelegate:
+                        const SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: 2,
+                      mainAxisSpacing: 8,
+                    ),
                     itemBuilder: (context, index) => GestureDetector(
                       onTap: () {
                         final String detailsRoute =
                             "/${Routes.details.name}/${index.toString()}";
                         context.go(detailsRoute);
                       },
-                      child: Column(
-                        children: [
-                          CircleImage(url: "https://image.tmdb.org/t/p/original${state.movie[index].posterPath}")
-                        ],
+                      child: Container(
+                        padding: const EdgeInsets.all(5),
+                        color: Palette.cardDark,
+                        child: CircleImage(
+                            url: "https://image.tmdb.org/t/p/original${state.movie[index].posterPath}"),
                       ),
                     ),
                     itemCount: state.movie.length,
-                    separatorBuilder: (context, index) => const Divider(),
                   ),
                 ),
               );

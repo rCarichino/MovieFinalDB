@@ -16,7 +16,7 @@ class CircleImage extends StatelessWidget {
     return ClipRRect(
       /// 360 degree circle
       child: CachedNetworkImage(
-        fit: BoxFit.cover,
+        fit: BoxFit.contain,
         width: size,
         height: size,
         fadeInDuration: const Duration(milliseconds: 300),
