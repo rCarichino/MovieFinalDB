@@ -12,10 +12,10 @@ abstract class AuthRemoteDataSources {
   Future<Either<Failure, LoginResponse>> login(AuthParams authParams);
 }
 
-class AuthRemoteDataSuorcesImpl extends AuthRemoteDataSources {
+class AuthRemoteDataSourcesImpl extends AuthRemoteDataSources {
   final DioClient _client;
 
-  AuthRemoteDataSuorcesImpl(this._client);
+  AuthRemoteDataSourcesImpl(this._client);
 
   @override
   Future<Either<Failure, LoginResponse>> login(AuthParams authParams) {
