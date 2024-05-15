@@ -6,12 +6,12 @@ import '../../../../core/usecase/usecase.dart';
 import '../entities/auth_params.dart';
 import '../repositories/auth_repository.dart';
 
-class CreateUser extends UseCase<UserCredential, AuthParams> {
+class LoginUser extends UseCase<User, AuthParams> {
   final AuthRepository authRepository;
 
-  CreateUser(this.authRepository);
+  LoginUser(this.authRepository);
 
   @override
-  Future<Either<Failure, UserCredential>> call(AuthParams params) =>
-      authRepository.register(params);
+  Future<Either<Failure, User>> call(AuthParams params) =>
+      authRepository.login(params);
 }
