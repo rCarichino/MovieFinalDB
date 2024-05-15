@@ -49,6 +49,8 @@ class Dimens {
   static double buttonH = 40;
   static double imageW = 110;
 
+  static double posterW = 475;
+
   static const double cornerRadius = 15;
   static const double cornerRadiusBottomSheet = 30;
 }

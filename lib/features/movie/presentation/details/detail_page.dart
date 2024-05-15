@@ -22,11 +22,11 @@ class DetailPage extends StatelessWidget {
         title: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            const Text(
+            Text(
                 style: TextStyle(
                     fontFamily: "Poppins",
                     fontWeight: FontWeight.w400,
-                    fontSize: 25),
+                    fontSize: Dimens.titleLarge),
                 "Details"),
           ],
         ),
@@ -40,48 +40,50 @@ class DetailPage extends StatelessWidget {
       body: BlocBuilder<ListCubit, ListState>(
         builder: (BuildContext context, ListState state) {
           return Card(
-            elevation: 5,
-            margin: const EdgeInsets.all(16),
+            elevation: Dimens.space6,
+            margin: EdgeInsets.all(Dimens.space16),
             child: Padding(
-              padding: const EdgeInsets.all(16),
+              padding: EdgeInsets.all(Dimens.space16),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
                   Text(
                     '${state.movie[index].title}',
-                    style: const TextStyle(
+                    style: TextStyle(
                         color: Palette.redLatte,
-                        fontSize: 17,
+                        fontSize: Dimens.titleMedium,
                         fontWeight: FontWeight.bold),
                   ),
-                  const SizedBox(height: 16),
+                  SizedBox(height: Dimens.space16),
                   FadeInImage.assetNetwork(
                     fit: BoxFit.contain,
-                    height: 475,
+                    height: Dimens.posterW,
                     placeholder: Images.loading,
-                    image:
-                        state.movie[index].posterPath != null ? 'https://image.tmdb.org/t/p/w500${state.movie[index].posterPath}' : "https://springerhealthcare.it/GIHTAD/wp-content/uploads/2021/03/placeholder.jpg",
+                    image: state.movie[index].posterPath != null
+                        ? 'https://image.tmdb.org/t/p/w500${state.movie[index].posterPath}'
+                        : "https://springerhealthcare.it/GIHTAD/wp-content/uploads/2021/03/placeholder.jpg",
                   ),
-                  const SizedBox(height: 16),
-                  const Text(
+                  SizedBox(height: Dimens.space16),
+                  Text(
                       style: TextStyle(
                           color: Palette.text,
                           fontFamily: "Poppins",
                           fontWeight: FontWeight.w600,
-                          fontSize: 23),
+                          fontSize: Dimens.headlineSmall),
                       "Description:"),
                   Expanded(
                     child: Container(
                       decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(20),
+                        borderRadius:
+                            BorderRadius.circular(Dimens.cornerRadius),
                         color: Palette.card,
                       ),
-                      margin: const EdgeInsets.all(5),
-                      padding: const EdgeInsets.all(10),
+                      margin: EdgeInsets.all(Dimens.space6),
+                      padding: EdgeInsets.all(Dimens.space12),
                       child: SingleChildScrollView(
                         child: Text(
-                          style: const TextStyle(
-                              fontSize: 16,
+                          style: TextStyle(
+                              fontSize: Dimens.labelLarge,
                               fontFamily: "Poppins",
                               fontWeight: FontWeight.w500),
                           '${state.movie[index].overview}',
