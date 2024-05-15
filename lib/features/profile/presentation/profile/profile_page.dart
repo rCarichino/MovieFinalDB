@@ -1,3 +1,5 @@
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
@@ -23,9 +25,15 @@ class ProfilePage extends StatelessWidget {
                 "Profile"),
           ],
         ),
-        actions: [IconButton(onPressed: () {}, icon:  Icon(Icons.logout, size: Dimens.selectedIndicatorW))],
+        actions: [
+          IconButton(
+              onPressed: () async {
+                  await FirebaseAuth.instance.signOut();
+                  context.goNamed(Routes.login.name);
+                },
+              icon: Icon(Icons.logout, size: Dimens.selectedIndicatorW))
+        ],
       ),
-
       bottomNavigationBar: BottomNavigationBar(
         items: <BottomNavigationBarItem>[
           BottomNavigationBarItem(
@@ -41,7 +49,17 @@ class ProfilePage extends StatelessWidget {
               ),
               label: "Profile")
         ],
+        currentIndex: _selectedIndex(context),
+        selectedItemColor: Colors.red[800],
       ),
     );
   }
+}
+
+int _selectedIndex(BuildContext context) {
+  final currentLocation = ModalRoute.of(context)!.settings.name!;
+  if (currentLocation == "profile") {
+    return 1;
+  }
+  return 0;
 }

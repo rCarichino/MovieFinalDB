@@ -43,6 +43,8 @@ class ListPage extends StatelessWidget {
               ),
               label: "Profile")
         ],
+        currentIndex: _selectedIndex(context),
+        selectedItemColor: Colors.red[800],
       ),
       appBar: AppBar(
           flexibleSpace: Container(
@@ -60,7 +62,8 @@ class ListPage extends StatelessWidget {
                 TextFormField(
                     decoration: InputDecoration(
                       border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(Dimens.cornerRadius),
+                          borderRadius:
+                              BorderRadius.circular(Dimens.cornerRadius),
                           borderSide: BorderSide.none),
                       filled: true,
                       fillColor: Palette.textDark,
@@ -88,8 +91,9 @@ class ListPage extends StatelessWidget {
             heightFactor: 1,
             child: Container(
               color: Palette.backgroundDark,
-              margin:  EdgeInsets.only(top: Dimens.space12),
-              padding:  EdgeInsets.symmetric(vertical: Dimens.space12, horizontal: Dimens.space6),
+              margin: EdgeInsets.only(top: Dimens.space12),
+              padding: EdgeInsets.symmetric(
+                  vertical: Dimens.space12, horizontal: Dimens.space6),
               child:
                   BlocBuilder<ListCubit, ListState>(builder: (context, state) {
                 if (state.isLoading) {
@@ -103,8 +107,7 @@ class ListPage extends StatelessWidget {
                 }
                 if (state.movie.isNotEmpty && !state.isLoading) {
                   return GridView.builder(
-                    gridDelegate:
-                         SliverGridDelegateWithFixedCrossAxisCount(
+                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                       crossAxisCount: Dimens.space2int,
                       mainAxisSpacing: Dimens.space8,
                     ),
@@ -115,7 +118,7 @@ class ListPage extends StatelessWidget {
                         context.go(detailsRoute);
                       },
                       child: Container(
-                        padding:  EdgeInsets.all(Dimens.space6),
+                        padding: EdgeInsets.all(Dimens.space6),
                         color: Palette.cardDark,
                         child: CachedNetworkImage(
                             placeholder: (context, url) =>
@@ -144,4 +147,12 @@ class ListPage extends StatelessWidget {
       ),
     );
   }
+}
+
+int _selectedIndex(BuildContext context) {
+  final currentLocation = ModalRoute.of(context)!.settings.name!;
+  if (currentLocation == "home") {
+    return 0;
+  }
+  return 1;
 }

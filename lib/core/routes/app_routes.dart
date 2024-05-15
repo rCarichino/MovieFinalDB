@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -71,9 +72,11 @@ class AppRoute {
       routerNeglect: true,
       debugLogDiagnostics: kDebugMode,
 
+
       redirect: (ctx, state) {
+
         final isHomePage = state.matchedLocation == Routes.home.path;
-        if(isHomePage && ctx.read<LoginCubit>().state.user == null){
+        if (isHomePage && ctx.read<LoginCubit>().state.user == null) {
           return Routes.login.path;
         }
         final bool isProfilePage = state.matchedLocation == Routes.profile.path;
@@ -81,7 +84,5 @@ class AppRoute {
           return Routes.login.path;
         }
         return null;
-      }
-
-      );
+      });
 }
