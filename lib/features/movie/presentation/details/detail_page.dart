@@ -61,7 +61,7 @@ class DetailPage extends StatelessWidget {
                     placeholder: Images.loading,
                     image: state.movie[index].posterPath != null
                         ? 'https://image.tmdb.org/t/p/w500${state.movie[index].posterPath}'
-                        : "https://springerhealthcare.it/GIHTAD/wp-content/uploads/2021/03/placeholder.jpg",
+                        : Images.posterPlaceholderURL,
                   ),
                   SizedBox(height: Dimens.space16),
                   Text(

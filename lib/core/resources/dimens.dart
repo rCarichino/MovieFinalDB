@@ -47,7 +47,7 @@ class Dimens {
   static double birthdayCalendar = 120;
 
   static double buttonH = 40;
-  static double imageW = 110;
+  static double imageW = 125;
 
   static double posterW = 475;
 
