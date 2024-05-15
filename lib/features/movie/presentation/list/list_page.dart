@@ -52,7 +52,7 @@ class ListPage extends StatelessWidget {
               ),
             );
           }
-          if (state.error.isNotEmpty && !state.isLoading) {
+          if (state.movie.isNotEmpty && !state.isLoading) {
             return ListView.separated(
               itemBuilder: (context, index) => GestureDetector(
                 onTap: () {
