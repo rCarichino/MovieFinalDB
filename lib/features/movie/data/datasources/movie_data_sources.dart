@@ -7,10 +7,10 @@ import '../../domain/entities/search_params.dart';
 import '../models/movie_model.dart';
 
 abstract class MovieDataSources {
-  Future<Either<Failure, List<MovieModel>>> getListMovies(
+  Future<Either<Failure, List<dynamic>>> getListMovies(
       SearchParams searchParams);
 
-  Future<Either<Failure, List<MovieModel>>> getSearchedMovie(
+  Future<Either<Failure, List<dynamic>>> getSearchedMovie(
       SearchParams searchParams);
 }
 
@@ -20,11 +20,12 @@ class MovieDataSourcesImpl extends MovieDataSources {
   MovieDataSourcesImpl(this._client);
 
   @override
-  Future<Either<Failure, List<MovieModel>>> getListMovies(
+  Future<Either<Failure, List<dynamic>>> getListMovies(
       SearchParams searchParams) async {
     return await _client.getRequest(ListApi.kDiscoverMoviePath,
         converter: (response) {
-      List<MovieModel> listMovie = response.map((movie) {
+
+      List<dynamic> listMovie = response['results'].map((movie) {
         return MovieModel.fromJson(movie);
       }).toList();
       return listMovie;
@@ -32,11 +33,12 @@ class MovieDataSourcesImpl extends MovieDataSources {
   }
 
   @override
-  Future<Either<Failure, List<MovieModel>>> getSearchedMovie(
+  Future<Either<Failure, List<dynamic>>> getSearchedMovie(
       SearchParams searchParams) async {
     return await _client.getRequest(ListApi.kSearchMoviePath,
         converter: (response) {
-      List<MovieModel> listMovie = response.map((movie) {
+
+      List<dynamic> listMovie = response['results'].map((movie) {
         return MovieModel.fromJson(movie);
       }).toList();
       return listMovie;

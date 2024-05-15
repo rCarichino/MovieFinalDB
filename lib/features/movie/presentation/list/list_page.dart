@@ -16,18 +16,16 @@ class ListPage extends StatelessWidget {
     final formKey = GlobalKey<FormState>();
 
     return Scaffold(
-      appBar: AppBar(
-        flexibleSpace: Container(
-          decoration: const BoxDecoration(
-              gradient: LinearGradient(
-            colors: [Palette.redLatte, Palette.blueLatte],
-            begin: Alignment.topLeft,
-            end: Alignment.bottomRight,
-          )),
-        ),
-        title: BlocBuilder<ListCubit, ListState>(
-          builder: (context, state) {
-            return Form(
+        appBar: AppBar(
+            flexibleSpace: Container(
+              decoration: const BoxDecoration(
+                  gradient: LinearGradient(
+                colors: [Palette.redLatte, Palette.blueLatte],
+                begin: Alignment.topLeft,
+                end: Alignment.bottomRight,
+              )),
+            ),
+            title: Form(
               key: formKey,
               child: Column(
                 children: [
@@ -43,12 +41,8 @@ class ListPage extends StatelessWidget {
                           .getSearchedMovies(query: value.trim())),
                 ],
               ),
-            );
-          },
-        ),
-      ),
-      body: BlocBuilder<ListCubit, ListState>(
-        builder: (context, state) {
+            )),
+        body: BlocBuilder<ListCubit, ListState>(builder: (context, state) {
           if (state.isLoading) {
             return Center(
               child: Image.asset(
@@ -83,9 +77,7 @@ class ListPage extends StatelessWidget {
             height: 125.0,
             width: 125.0,
           ));
-        },
-      ),
-    );
+        }));
   }
 }
 
