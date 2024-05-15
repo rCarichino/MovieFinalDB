@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:moviedb/core/routes/app_routes.dart';
+import 'core/resources/styles.dart';
 import 'dependencies_injection.dart';
 import 'features/movie/presentation/list/cubits/list_cubit.dart';
 
@@ -20,11 +21,8 @@ class MyApp extends StatelessWidget {
     return BlocProvider(
         create: (context) => getIt<ListCubit>(),
         child: MaterialApp.router(
-          title: 'Flutter Demo',
-          theme: ThemeData(
-            colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-            useMaterial3: true,
-          ),
+          title: 'Movie DB',
+          theme: themeLight(context),
           routerConfig: AppRoute.router,
         ));
   }

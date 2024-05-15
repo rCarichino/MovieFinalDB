@@ -28,7 +28,7 @@ class _SplashScreenPageState extends State<SplashScreenPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: ColoredBox(
-        color: Colors.white,
+        color: Theme.of(context).extension<CustomColors>()!.background!,
         child: Center(
           child: CircleAvatar(
             backgroundColor: Theme.of(context).hintColor,
