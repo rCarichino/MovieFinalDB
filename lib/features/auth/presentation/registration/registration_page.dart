@@ -101,7 +101,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
                                   .toggleShowPassword(),
                             ),
                             validator: (String? value) =>
-                                isValidPassword(value),
+                            isValidPassword(value)? value : null,
                           );
                         },
                       ),

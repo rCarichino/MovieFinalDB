@@ -105,7 +105,7 @@ class ListPage extends StatelessWidget {
                   return GridView.builder(
                     gridDelegate:
                          SliverGridDelegateWithFixedCrossAxisCount(
-                      crossAxisCount: Dimens.space2 as int,
+                      crossAxisCount: Dimens.space2int,
                       mainAxisSpacing: Dimens.space8,
                     ),
                     itemBuilder: (context, index) => GestureDetector(

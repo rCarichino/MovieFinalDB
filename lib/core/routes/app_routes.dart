@@ -73,11 +73,11 @@ class AppRoute {
 
       redirect: (ctx, state) {
         final isHomePage = state.matchedLocation == Routes.home.path;
-        if(isHomePage && ctx.watch<LoginCubit>().state.user == null){
+        if(isHomePage && ctx.read<LoginCubit>().state.user == null){
           return Routes.login.path;
         }
         final bool isProfilePage = state.matchedLocation == Routes.profile.path;
-        if (isProfilePage && ctx.watch<LoginCubit>().state.user == null) {
+        if (isProfilePage && ctx.read<LoginCubit>().state.user == null) {
           return Routes.login.path;
         }
         return null;

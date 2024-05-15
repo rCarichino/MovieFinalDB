@@ -16,6 +16,9 @@ class Dimens {
   static double bodySmall = 12;
   static double labelSmall = 10;
 
+  static int space2int = 2;
+
+
   static double zero = 0;
   static double space2 = 2;
   static double space3 = 3;
