@@ -5,13 +5,13 @@ import 'package:moviedb/features/movie/domain/entities/movie.dart';
 import 'package:moviedb/features/movie/domain/entities/search_params.dart';
 import 'package:moviedb/features/movie/domain/repositories/movie_repository.dart';
 
-class PostListMovie extends UseCase< List<Movie>, SearchParams>{
+class GetSearchedMovie extends UseCase< List<Movie>, SearchParams>{
 
   final MovieRepository movieRepository;
-  PostListMovie(this.movieRepository);
+  GetSearchedMovie(this.movieRepository);
 
   @override
-  Future<Either<Failure, List<Movie>>> call(SearchParams params)  => movieRepository.fetchListMovies(params);
+  Future<Either<Failure,  List<Movie>>> call(SearchParams params)  => movieRepository.fetchSearchedMovies(params);
 
 
 }

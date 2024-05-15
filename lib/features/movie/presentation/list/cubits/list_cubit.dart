@@ -4,14 +4,14 @@ import 'package:moviedb/features/movie/domain/entities/movie.dart';
 import 'package:moviedb/features/movie/domain/entities/search_params.dart';
 
 import '../../../../../core/error/failure.dart';
-import '../../../domain/usecases/post_popular_movie.dart';
-import '../../../domain/usecases/post_searched_movie.dart';
+import '../../../domain/usecases/get_popular_movie.dart';
+import '../../../domain/usecases/get_searched_movie.dart';
 
 part 'list_state.dart';
 
 class ListCubit extends Cubit<ListState> {
-  final PostListMovie postPopularMovie;
-  final PostSearchedMovie postSearchedMovie;
+  final GetListMovie postPopularMovie;
+  final GetSearchedMovie postSearchedMovie;
 
   ListCubit({required this.postPopularMovie, required this.postSearchedMovie})
       : super(ListState.initial());

@@ -6,8 +6,8 @@ import 'package:moviedb/features/movie/presentation/list/cubits/list_cubit.dart'
 import 'core/api/dio_client.dart';
 import 'features/movie/data/repositories/movie_repository_impl.dart';
 import 'features/movie/domain/repositories/movie_repository.dart';
-import 'features/movie/domain/usecases/post_popular_movie.dart';
-import 'features/movie/domain/usecases/post_searched_movie.dart';
+import 'features/movie/domain/usecases/get_popular_movie.dart';
+import 'features/movie/domain/usecases/get_searched_movie.dart';
 
 GetIt getIt = GetIt.instance;
 
@@ -36,8 +36,8 @@ void _dataSources() {
 
 void _useCase() {
   /// Auth
-  getIt.registerLazySingleton(() => PostListMovie(getIt()));
-  getIt.registerLazySingleton(() => PostSearchedMovie(getIt()));
+  getIt.registerLazySingleton(() => GetListMovie(getIt()));
+  getIt.registerLazySingleton(() => GetSearchedMovie(getIt()));
 
 }
 
