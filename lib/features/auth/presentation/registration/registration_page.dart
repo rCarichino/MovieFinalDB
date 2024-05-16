@@ -114,6 +114,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
                               email: _conEmail.text,
                               password: _conPassword.text,
                             );
+                            context.goNamed(Routes.home.name);
                           }
                         },
                       ),

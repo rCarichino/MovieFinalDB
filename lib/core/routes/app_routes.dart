@@ -52,7 +52,7 @@ class AppRoute {
         GoRoute(
             path: Routes.profile.path,
             name: Routes.profile.name,
-            builder: (context, state) => const ProfilePage()),
+            builder: (context, state) => ProfilePage()),
         GoRoute(
             path: Routes.login.path,
             name: Routes.login.name,

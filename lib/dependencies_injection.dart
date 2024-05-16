@@ -6,6 +6,7 @@ import 'package:moviedb/features/auth/presentation/login/cubits/login_cubit.dart
 import 'package:moviedb/features/auth/presentation/registration/cubits/registration_cubit.dart';
 import 'package:moviedb/features/movie/data/datasources/movie_data_sources.dart';
 import 'package:moviedb/features/movie/presentation/list/cubits/list_cubit.dart';
+import 'package:moviedb/features/profile/presentation/profile/cubits/profile_cubit.dart';
 
 import 'core/api/dio_client.dart';
 import 'features/auth/domain/usecases/login_user.dart';
@@ -53,4 +54,5 @@ void _cubit() {
 
   getIt.registerFactory(() => LoginCubit(loginUser: getIt()));
   getIt.registerFactory(() => RegistrationCubit(createUser: getIt()));
+  getIt.registerFactory(() => ProfileCubit());
 }

@@ -1,10 +1,12 @@
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:moviedb/features/profile/presentation/profile/cubits/profile_cubit.dart';
 
 import '../../../../core/resources/dimens.dart';
 import '../../../../core/routes/app_routes.dart';
+import '../../../auth/presentation/login/cubits/login_cubit.dart';
 
 class ProfilePage extends StatelessWidget {
   const ProfilePage({super.key});
@@ -26,12 +28,17 @@ class ProfilePage extends StatelessWidget {
           ],
         ),
         actions: [
-          IconButton(
-              onPressed: () async {
-                  await FirebaseAuth.instance.signOut();
-                  context.goNamed(Routes.login.name);
+          BlocListener<ProfileCubit, ProfileState>(
+            listener: (context, state) {
+              context.read<LoginCubit>().logoutUser();
+              print(context.read<LoginCubit>().state.user);
+            },
+            child: IconButton(
+                onPressed: () {
+                  _signOut(context);
                 },
-              icon: Icon(Icons.logout, size: Dimens.selectedIndicatorW))
+                icon: Icon(Icons.logout, size: Dimens.selectedIndicatorW)),
+          )
         ],
       ),
       bottomNavigationBar: BottomNavigationBar(
@@ -52,6 +59,7 @@ class ProfilePage extends StatelessWidget {
         currentIndex: _selectedIndex(context),
         selectedItemColor: Colors.red[800],
       ),
+      body: Text(FirebaseAuth.instance.currentUser!.email ?? "Non sei loggato"),
     );
   }
 }
@@ -62,4 +70,12 @@ int _selectedIndex(BuildContext context) {
     return 1;
   }
   return 0;
+}
+
+Future<void> _signOut(BuildContext context) async {
+  print(context.read<LoginCubit>().state.user);
+  context.read<ProfileCubit>().signOutUser();
+  await FirebaseAuth.instance.signOut();
+  print(context.read<LoginCubit>().state.user);
+
 }

@@ -5,6 +5,7 @@ import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:moviedb/core/routes/app_routes.dart';
 import 'package:moviedb/features/auth/presentation/login/cubits/login_cubit.dart';
 import 'package:moviedb/features/auth/presentation/registration/cubits/registration_cubit.dart';
+import 'package:moviedb/features/profile/presentation/profile/cubits/profile_cubit.dart';
 import 'core/resources/styles.dart';
 import 'dependencies_injection.dart';
 import 'features/movie/presentation/list/cubits/list_cubit.dart';
@@ -33,6 +34,9 @@ class MyApp extends StatelessWidget {
         ),
         BlocProvider(
           create: (context) => getIt<RegistrationCubit>(),
+        ),
+        BlocProvider(
+          create: (context) => getIt<ProfileCubit>(),
         ),
       ],
       child: SafeArea(
