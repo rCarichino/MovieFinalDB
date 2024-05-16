@@ -1,8 +1,8 @@
 
 # MovieFinalDB
 Todo List:\
-Finire di implementare la grafica.\
+Finire di implementare la grafica(Nav bar funzionante per bene).\
 Implementare delle chiamate supplementari per la ricerca.\
-Implementare una login e registration page fittizia, o tramite qualche db o qualche ulteriore api già creata.
-
-
+Finire il logout e login probabilmente tramite il refresh della pagina.\
+Creare una pagina profilo.\
+Suddividere in piccoli widget.
