@@ -24,7 +24,6 @@ class MovieDataSourcesImpl extends MovieDataSources {
       SearchParams searchParams) async {
     return await _client.getRequest(ListApi.kDiscoverMoviePath,
         converter: (response) {
-
       List<dynamic> listMovie = response['results'].map((movie) {
         return MovieModel.fromJson(movie);
       }).toList();
@@ -37,7 +36,6 @@ class MovieDataSourcesImpl extends MovieDataSources {
       SearchParams searchParams) async {
     return await _client.getRequest(ListApi.kSearchMoviePath,
         converter: (response) {
-
       List<dynamic> listMovie = response['results'].map((movie) {
         return MovieModel.fromJson(movie);
       }).toList();

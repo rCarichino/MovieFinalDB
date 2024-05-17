@@ -77,5 +77,4 @@ Future<void> _signOut(BuildContext context) async {
   context.read<ProfileCubit>().signOutUser();
   await FirebaseAuth.instance.signOut();
   print(context.read<LoginCubit>().state.user);
-
 }

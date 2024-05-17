@@ -7,7 +7,6 @@ import '../../core/resources/styles.dart';
 import '../../core/routes/app_routes.dart';
 import '../movie/presentation/list/cubits/list_cubit.dart';
 
-
 class SplashScreenPage extends StatefulWidget {
   @override
   _SplashScreenPageState createState() => _SplashScreenPageState();

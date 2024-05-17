@@ -16,24 +16,21 @@ class MovieModel {
     this.voteCount,
   });
 
-  factory MovieModel.fromJson(dynamic json) {
-    return MovieModel(
-        adult: json['adult'],
-        backdropPath: json['backdrop_path'],
-        genreIds:
-            json['genre_ids'] != null ? json['genre_ids'].cast<num>() : [],
-        id: json['id'],
-        originalLanguage: json['original_language'],
-        originalTitle: json['original_title'],
-        overview: json['overview'],
-        popularity: json['popularity'],
-        posterPath: json['poster_path'],
-        releaseDate: json['release_date'],
-        title: json['title'],
-        video: json['video'],
-        voteAverage: json['vote_average'],
-        voteCount: json['vote_count']);
-  }
+  factory MovieModel.fromJson(dynamic json) => MovieModel(
+      adult: json['adult'],
+      backdropPath: json['backdrop_path'],
+      genreIds: json['genre_ids'] != null ? json['genre_ids'].cast<num>() : [],
+      id: json['id'],
+      originalLanguage: json['original_language'],
+      originalTitle: json['original_title'],
+      overview: json['overview'],
+      popularity: json['popularity'],
+      posterPath: json['poster_path'],
+      releaseDate: json['release_date'],
+      title: json['title'],
+      video: json['video'],
+      voteAverage: json['vote_average'],
+      voteCount: json['vote_count']);
 
   bool? adult;
   String? backdropPath;
