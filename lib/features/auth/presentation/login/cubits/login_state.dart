@@ -12,17 +12,15 @@ class LoginState extends Equatable {
       required this.user,
       required this.error});
 
-  factory LoginState.initial() {
-    return LoginState(
-        showPassword: true, authParams: AuthParams(), user: null, error: "");
-  }
+  factory LoginState.initial() => LoginState(
+      showPassword: true, authParams: AuthParams(), user: null, error: "");
 
   LoginState copyWith(
       {bool? showPassword, AuthParams? authParams, User? user, String? error}) {
     return LoginState(
         showPassword: showPassword ?? this.showPassword,
         authParams: authParams ?? this.authParams,
-        user: user ?? this.user,
+        user: user,
         error: error ?? this.error);
   }
 

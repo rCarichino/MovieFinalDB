@@ -22,11 +22,13 @@ class LoginCubit extends Cubit<LoginState> {
         (user) => emit(state.copyWith(authParams: authParams, user: user)));
   }
 
-  void toggleShowPassword() {
-    emit(state.copyWith(showPassword: !state.showPassword));
+  void toggleShowPassword() =>
+      emit(state.copyWith(showPassword: !state.showPassword));
+
+  void logoutUser() {
+    emit(state.copyWith(user: null));
+    print(state.user);
+    print("----------");
   }
 
-  void logoutUser(){
-    emit(state.copyWith(user: null));
-  }
 }

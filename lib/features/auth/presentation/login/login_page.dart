@@ -100,7 +100,7 @@ class _LoginPageState extends State<LoginPage> {
                                   .toggleShowPassword(),
                             ),
                             validator: (String? value) =>
-                                isValidPassword(value)? value : null,
+                                isValidPassword(value) ? value : null,
                           );
                         },
                       ),
@@ -112,7 +112,6 @@ class _LoginPageState extends State<LoginPage> {
                             context.read<LoginCubit>().login(
                                   email: _conEmail.text,
                                   password: _conPassword.text,
-
                                 );
                             context.goNamed(Routes.home.name);
                           }

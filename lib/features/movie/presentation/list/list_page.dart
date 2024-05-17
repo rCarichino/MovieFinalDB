@@ -39,7 +39,9 @@ class ListPage extends StatelessWidget {
           BottomNavigationBarItem(
               icon: IconButton(
                 icon: const Icon(Icons.person),
-                onPressed: () => context.goNamed(Routes.profile.name),
+                onPressed: () {
+                  context.goNamed(Routes.profile.name);
+                }
               ),
               label: "Profile")
         ],

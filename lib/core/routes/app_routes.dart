@@ -72,7 +72,6 @@ class AppRoute {
       routerNeglect: true,
       debugLogDiagnostics: kDebugMode,
 
-
       redirect: (ctx, state) {
 
         final isHomePage = state.matchedLocation == Routes.home.path;

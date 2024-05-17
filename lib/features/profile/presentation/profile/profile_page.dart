@@ -30,8 +30,11 @@ class ProfilePage extends StatelessWidget {
         actions: [
           BlocListener<ProfileCubit, ProfileState>(
             listener: (context, state) {
+              print(
+                  'LoginCubit user state prima logout: ${context.read<LoginCubit>().state.user}');
               context.read<LoginCubit>().logoutUser();
-              print(context.read<LoginCubit>().state.user);
+              print(
+                  'LoginCubit user state dopo logout: ${context.read<LoginCubit>().state.user}');
             },
             child: IconButton(
                 onPressed: () {
@@ -59,7 +62,8 @@ class ProfilePage extends StatelessWidget {
         currentIndex: _selectedIndex(context),
         selectedItemColor: Colors.red[800],
       ),
-      body: Text(FirebaseAuth.instance.currentUser!.email ?? "Non sei loggato"),
+      body: Text(
+          context.watch<ProfileCubit>().state.user?.email ?? 'Utente sloggato'),
     );
   }
 }
@@ -73,8 +77,9 @@ int _selectedIndex(BuildContext context) {
 }
 
 Future<void> _signOut(BuildContext context) async {
-  print(context.read<LoginCubit>().state.user);
+  print("ProfileCubit user state prima logout: ${context.read<ProfileCubit>().state.user}");
   context.read<ProfileCubit>().signOutUser();
+  print("ProfileCubit user state dopo logout: ${context.read<ProfileCubit>().state.user}");
   await FirebaseAuth.instance.signOut();
-  print(context.read<LoginCubit>().state.user);
+  print("Firebase user after logout: ${FirebaseAuth.instance.currentUser}");
 }
