@@ -28,4 +28,8 @@ class LoginCubit extends Cubit<LoginState> {
   void logoutUser() {
     emit(state.copyWith(user: null));
   }
+
+  bool isLoggedIn(){
+    return state.user == null ? true : false;
+}
 }

@@ -71,13 +71,15 @@ class AppRoute {
       initialLocation: Routes.splashScreen.path,
       routerNeglect: true,
       debugLogDiagnostics: kDebugMode,
+
       redirect: (ctx, state) {
         final isHomePage = state.matchedLocation == Routes.home.path;
-        if (isHomePage && ctx.read<LoginCubit>().state.user == null) {
+
+        if (isHomePage && FirebaseAuth.instance.currentUser == null) {
           return Routes.login.path;
         }
         final bool isProfilePage = state.matchedLocation == Routes.profile.path;
-        if (isProfilePage && ctx.read<LoginCubit>().state.user == null) {
+        if (isProfilePage && FirebaseAuth.instance.currentUser == null) {
           return Routes.login.path;
         }
         return null;
