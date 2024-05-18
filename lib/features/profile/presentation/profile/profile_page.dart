@@ -30,6 +30,7 @@ class ProfilePage extends StatelessWidget {
         actions: [
           BlocListener<ProfileCubit, ProfileState>(
             listener: (context, state) {
+              context.read<LoginCubit>().logoutUser();
             },
             child: IconButton(
                 onPressed: () {
@@ -72,9 +73,6 @@ int _selectedIndex(BuildContext context) {
 }
 
 Future<void> _signOut(BuildContext context) async {
-  print("ProfileCubit user state prima logout: ${context.read<ProfileCubit>().state.user}");
   context.read<ProfileCubit>().signOutUser();
-  print("ProfileCubit user state dopo logout: ${context.read<ProfileCubit>().state.user}");
   await FirebaseAuth.instance.signOut();
-  print("Firebase user after logout: ${FirebaseAuth.instance.currentUser}");
 }

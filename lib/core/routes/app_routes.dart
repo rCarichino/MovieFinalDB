@@ -7,6 +7,7 @@ import 'package:moviedb/features/auth/presentation/login/cubits/login_cubit.dart
 import 'package:moviedb/features/auth/presentation/registration/registration_page.dart';
 import 'package:moviedb/features/movie/presentation/details/detail_page.dart';
 import 'package:moviedb/features/movie/presentation/list/list_page.dart';
+import 'package:moviedb/features/profile/presentation/profile/cubits/profile_cubit.dart';
 import 'package:moviedb/features/profile/presentation/profile/profile_page.dart';
 import 'package:moviedb/features/splashscreen/splash_screen_page.dart';
 
@@ -77,6 +78,7 @@ class AppRoute {
           return Routes.login.path;
         }
         final bool isProfilePage = state.matchedLocation == Routes.profile.path;
+
         if (isProfilePage && ctx.read<LoginCubit>().state.user == null) {
           return Routes.login.path;
         }
