@@ -69,18 +69,19 @@ class AppRoute {
       initialLocation: Routes.splashScreen.path,
       routerNeglect: true,
       debugLogDiagnostics: kDebugMode,
-
       redirect: (context, state) {
-        final isHomePage = state.matchedLocation == Routes.home.path;
+        print("PROVA ${FirebaseAuth.instance.currentUser}");
+        final bool isHomePage = state.matchedLocation == Routes.home.path;
 
         if (isHomePage && FirebaseAuth.instance.currentUser == null) {
           return Routes.login.path;
         }
-        final bool isProfilePage = state.matchedLocation == Routes.profile.path;
-        if (isProfilePage && FirebaseAuth.instance.currentUser == null) {
 
+        final bool isProfilePage = state.matchedLocation == Routes.profile.path;
+
+        if (isProfilePage && FirebaseAuth.instance.currentUser == null) {
           return Routes.login.path;
         }
-        return null;
+
       });
 }

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:moviedb/features/auth/presentation/login/cubits/login_cubit.dart';
 import 'package:moviedb/features/auth/presentation/registration/cubits/registration_cubit.dart';
 import 'package:oktoast/oktoast.dart';
 
@@ -11,6 +12,7 @@ import '../../../../core/widgets/button.dart';
 import '../../../../core/widgets/spacer_v.dart';
 import '../../../../core/widgets/text_f.dart';
 import '../../../../utils/validator.dart';
+import '../../../profile/presentation/profile/cubits/profile_cubit.dart';
 
 class RegistrationPage extends StatefulWidget {
   const RegistrationPage({super.key});
@@ -51,6 +53,12 @@ class _RegistrationPageState extends State<RegistrationPage> {
         if (state.error.isNotEmpty) {
           showToast(state.error);
         }
+        context.read<LoginCubit>().login(
+              email: _conEmail.text,
+              password: _conPassword.text,
+            );
+        context.read<ProfileCubit>().getCurrentUser();
+        context.goNamed(Routes.home.name);
       }, builder: (context, state) {
         return Center(
           child: SingleChildScrollView(
@@ -87,45 +95,41 @@ class _RegistrationPageState extends State<RegistrationPage> {
                         hint: "email",
                         validator: (String? value) => validateEmail(value),
                       ),
-                      BlocBuilder<RegistrationCubit, RegistrationState>(
-                        builder: (_, state) {
-                          return TextF(
-                            autofillHints: const [AutofillHints.password],
-                            key: const Key("password"),
-                            curFocusNode: _fnPassword,
-                            textInputAction: TextInputAction.done,
-                            controller: _conPassword,
-                            keyboardType: TextInputType.text,
-                            prefixIcon: Icon(
-                              Icons.lock_outline,
-                              color:
-                                  Theme.of(context).textTheme.bodyLarge?.color,
-                            ),
-                            obscureText: state.showPassword,
-                            hintText: '••••••••••••',
-                            maxLine: 1,
-                            hint: "password",
-                            suffixIcon: IconButton(
-                              icon: const Icon(Icons.remove_red_eye_outlined),
-                              onPressed: () => context
-                                  .read<RegistrationCubit>()
-                                  .toggleShowPassword(),
-                            ),
-                            validator: (String? value) =>
-                                isValidPassword(value) ? value : null,
-                          );
-                        },
+                      TextF(
+                        autofillHints: const [AutofillHints.password],
+                        key: const Key("password"),
+                        curFocusNode: _fnPassword,
+                        textInputAction: TextInputAction.done,
+                        controller: _conPassword,
+                        keyboardType: TextInputType.text,
+                        prefixIcon: Icon(
+                          Icons.lock_outline,
+                          color: Theme.of(context).textTheme.bodyLarge?.color,
+                        ),
+                        obscureText: state.showPassword,
+                        hintText: '••••••••••••',
+                        maxLine: 1,
+                        hint: "password",
+                        suffixIcon: IconButton(
+                          icon: const Icon(Icons.remove_red_eye_outlined),
+                          onPressed: () => context
+                              .read<RegistrationCubit>()
+                              .toggleShowPassword(),
+                        ),
+                        validator: (String? value) =>
+                            isValidPassword(value) ? value : null,
                       ),
                       SpacerV(value: Dimens.space24),
                       Button(
                         title: "Register",
-                        onPressed: () {
+                        onPressed: () async {
                           if (_keyForm.currentState?.validate() ?? false) {
-                            context.read<RegistrationCubit>().registration(
+                            await context
+                                .read<RegistrationCubit>()
+                                .registration(
                                   email: _conEmail.text,
                                   password: _conPassword.text,
                                 );
-                            context.goNamed(Routes.home.name);
                           }
                         },
                       ),

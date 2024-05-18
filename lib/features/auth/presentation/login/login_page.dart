@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:moviedb/features/auth/presentation/login/cubits/login_cubit.dart';
+import 'package:moviedb/features/profile/presentation/profile/cubits/profile_cubit.dart';
 import 'package:oktoast/oktoast.dart';
 
 import '../../../../core/resources/dimens.dart';
@@ -49,6 +50,8 @@ class _LoginPageState extends State<LoginPage> {
         if (state.error.isNotEmpty) {
           showToast(state.error);
         }
+        context.read<ProfileCubit>().getCurrentUser();
+        context.goNamed(Routes.home.name);
       }, builder: (context, state) {
         return Center(
           child: SingleChildScrollView(
@@ -85,45 +88,38 @@ class _LoginPageState extends State<LoginPage> {
                         hint: "email",
                         validator: (String? value) => validateEmail(value),
                       ),
-                      BlocBuilder<LoginCubit, LoginState>(
-                        builder: (_, state) {
-                          return TextF(
-                            autofillHints: const [AutofillHints.password],
-                            key: const Key("password"),
-                            curFocusNode: _fnPassword,
-                            textInputAction: TextInputAction.done,
-                            controller: _conPassword,
-                            keyboardType: TextInputType.text,
-                            prefixIcon: Icon(
-                              Icons.lock_outline,
-                              color:
-                                  Theme.of(context).textTheme.bodyLarge?.color,
-                            ),
-                            obscureText: state.showPassword,
-                            hintText: '••••••••••••',
-                            maxLine: 1,
-                            hint: "password",
-                            suffixIcon: IconButton(
-                              icon: const Icon(Icons.remove_red_eye_outlined),
-                              onPressed: () => context
-                                  .read<LoginCubit>()
-                                  .toggleShowPassword(),
-                            ),
-                            validator: (String? value) =>
-                                isValidPassword(value) ? value : null,
-                          );
-                        },
+                      TextF(
+                        autofillHints: const [AutofillHints.password],
+                        key: const Key("password"),
+                        curFocusNode: _fnPassword,
+                        textInputAction: TextInputAction.done,
+                        controller: _conPassword,
+                        keyboardType: TextInputType.text,
+                        prefixIcon: Icon(
+                          Icons.lock_outline,
+                          color: Theme.of(context).textTheme.bodyLarge?.color,
+                        ),
+                        obscureText: state.showPassword,
+                        hintText: '••••••••••••',
+                        maxLine: 1,
+                        hint: "password",
+                        suffixIcon: IconButton(
+                          icon: const Icon(Icons.remove_red_eye_outlined),
+                          onPressed: () =>
+                              context.read<LoginCubit>().toggleShowPassword(),
+                        ),
+                        validator: (String? value) =>
+                            isValidPassword(value) ? value : null,
                       ),
                       SpacerV(value: Dimens.space24),
                       Button(
                         title: "Login",
-                        onPressed: () async {
+                        onPressed: () {
                           if (_keyForm.currentState?.validate() ?? false) {
-                            await context.read<LoginCubit>().login(
+                            context.read<LoginCubit>().login(
                                   email: _conEmail.text,
                                   password: _conPassword.text,
                                 );
-                            context.goNamed(Routes.home.name);
                           }
                         },
                       ),

@@ -31,6 +31,7 @@ class ProfilePage extends StatelessWidget {
           BlocListener<ProfileCubit, ProfileState>(
             listener: (context, state) {
               context.read<LoginCubit>().logoutUser();
+              context.goNamed(Routes.login.name);
             },
             child: IconButton(
                 onPressed: () {
@@ -71,6 +72,8 @@ int _selectedIndex(BuildContext context) {
   }
   return 0;
 }
+
+
 
 Future<void> _signOut(BuildContext context) async {
   context.read<ProfileCubit>().signOutUser();
