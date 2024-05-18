@@ -6,6 +6,7 @@ import 'package:moviedb/features/profile/presentation/profile/cubits/profile_cub
 
 import '../../../../core/resources/dimens.dart';
 import '../../../../core/routes/app_routes.dart';
+import '../../../../core/widgets/bottom_navigation_bar.dart';
 import '../../../auth/presentation/login/cubits/login_cubit.dart';
 
 class ProfilePage extends StatelessWidget {
@@ -19,9 +20,7 @@ class ProfilePage extends StatelessWidget {
         title: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text(
-                style: Theme.of(context).textTheme.titleLarge,
-                "Profile"),
+            Text(style: Theme.of(context).textTheme.titleLarge, "Profile"),
           ],
         ),
         actions: [
@@ -38,39 +37,12 @@ class ProfilePage extends StatelessWidget {
           )
         ],
       ),
-      bottomNavigationBar: BottomNavigationBar(
-        items: <BottomNavigationBarItem>[
-          BottomNavigationBarItem(
-              icon: IconButton(
-                onPressed: () => context.goNamed(Routes.home.name),
-                icon: const Icon(Icons.movie),
-              ),
-              label: "Movies"),
-          BottomNavigationBarItem(
-              icon: IconButton(
-                icon: const Icon(Icons.person),
-                onPressed: () => context.goNamed(Routes.profile.name),
-              ),
-              label: "Profile")
-        ],
-        currentIndex: _selectedIndex(context),
-        selectedItemColor: Colors.red[800],
-      ),
       body: Text(
           context.watch<ProfileCubit>().state.user?.email ?? 'Utente sloggato'),
+      bottomNavigationBar: bottomNavigationBar(context),
     );
   }
 }
-
-int _selectedIndex(BuildContext context) {
-  final currentLocation = ModalRoute.of(context)!.settings.name!;
-  if (currentLocation == "profile") {
-    return 1;
-  }
-  return 0;
-}
-
-
 
 Future<void> _signOut(BuildContext context) async {
   context.read<ProfileCubit>().signOutUser();

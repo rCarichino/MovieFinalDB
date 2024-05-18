@@ -7,6 +7,7 @@ import 'package:moviedb/core/resources/palette.dart';
 import '../../../../core/resources/dimens.dart';
 import '../../../../core/resources/images.dart';
 import '../../../../core/routes/app_routes.dart';
+import '../../../../core/widgets/bottom_navigation_bar.dart';
 import '../../../../core/widgets/error_dialog.dart';
 import '../../../../core/widgets/loading.dart';
 import 'cubits/list_cubit.dart';
@@ -26,26 +27,6 @@ class ListPage extends StatelessWidget {
     }
 
     return Scaffold(
-      bottomNavigationBar: BottomNavigationBar(
-        items: <BottomNavigationBarItem>[
-          BottomNavigationBarItem(
-              icon: IconButton(
-                onPressed: () => context.goNamed(Routes.home.name),
-                icon: const Icon(Icons.movie),
-              ),
-              label: "Movies"),
-          BottomNavigationBarItem(
-              icon: IconButton(
-                icon: const Icon(Icons.person),
-                onPressed: () {
-                  context.goNamed(Routes.profile.name);
-                }
-              ),
-              label: "Profile")
-        ],
-        currentIndex: _selectedIndex(context),
-        selectedItemColor: Colors.red[800],
-      ),
       appBar: AppBar(
           flexibleSpace: Container(
             decoration: const BoxDecoration(
@@ -140,14 +121,10 @@ class ListPage extends StatelessWidget {
           )),
         ],
       ),
+      bottomNavigationBar: bottomNavigationBar(context),
     );
   }
+
+
 }
 
-int _selectedIndex(BuildContext context) {
-  final currentLocation = ModalRoute.of(context)!.settings.name!;
-  if (currentLocation == "home") {
-    return 0;
-  }
-  return 1;
-}
