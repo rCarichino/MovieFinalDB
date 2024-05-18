@@ -39,7 +39,8 @@ class SearchForm extends StatelessWidget {
   }
 
   String? _validateSearch(value) {
-    if (value == null) {
+
+    if (value.lenght == null) {
       return "Look for something to search first";
     }
     return null;
