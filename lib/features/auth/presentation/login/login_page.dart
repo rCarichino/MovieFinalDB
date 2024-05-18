@@ -35,6 +35,16 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        centerTitle: true,
+        title: Padding(
+          padding: EdgeInsets.only(top: Dimens.space12),
+          child: Text(
+            "Login",
+            style: Theme.of(context).textTheme.headlineLarge,
+          ),
+        ),
+      ),
       body: BlocConsumer<LoginCubit, LoginState>(listener: (context, state) {
         if (state.error.isNotEmpty) {
           showToast(state.error);

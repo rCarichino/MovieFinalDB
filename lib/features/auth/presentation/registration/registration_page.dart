@@ -34,7 +34,20 @@ class _RegistrationPageState extends State<RegistrationPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: BlocConsumer<RegistrationCubit, RegistrationState>(listener: (context, state) {
+      appBar: AppBar(
+          centerTitle: true,
+          title: Padding(
+            padding: EdgeInsets.only(top: Dimens.space12),
+            child: Text(
+              "Registration",
+              style: Theme.of(context).textTheme.headlineLarge,
+            ),
+          ),
+          leading: IconButton(
+              onPressed: () => context.goNamed(Routes.login.name),
+              icon: const Icon(Icons.arrow_back))),
+      body: BlocConsumer<RegistrationCubit, RegistrationState>(
+          listener: (context, state) {
         if (state.error.isNotEmpty) {
           showToast(state.error);
         }
@@ -86,7 +99,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
                             prefixIcon: Icon(
                               Icons.lock_outline,
                               color:
-                              Theme.of(context).textTheme.bodyLarge?.color,
+                                  Theme.of(context).textTheme.bodyLarge?.color,
                             ),
                             obscureText: state.showPassword,
                             hintText: '••••••••••••',
@@ -99,7 +112,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
                                   .toggleShowPassword(),
                             ),
                             validator: (String? value) =>
-                            isValidPassword(value)? value : null,
+                                isValidPassword(value) ? value : null,
                           );
                         },
                       ),
@@ -109,9 +122,9 @@ class _RegistrationPageState extends State<RegistrationPage> {
                         onPressed: () {
                           if (_keyForm.currentState?.validate() ?? false) {
                             context.read<RegistrationCubit>().registration(
-                              email: _conEmail.text,
-                              password: _conPassword.text,
-                            );
+                                  email: _conEmail.text,
+                                  password: _conPassword.text,
+                                );
                             context.goNamed(Routes.home.name);
                           }
                         },
