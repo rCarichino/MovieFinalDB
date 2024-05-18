@@ -30,6 +30,7 @@ class ProfilePage extends StatelessWidget {
         actions: [
           BlocListener<ProfileCubit, ProfileState>(
             listener: (context, state) {
+              context.read<LoginCubit>().logoutUser();
             },
             child: IconButton(
                 onPressed: () {
