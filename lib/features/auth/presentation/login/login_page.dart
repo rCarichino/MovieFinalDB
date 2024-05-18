@@ -107,9 +107,9 @@ class _LoginPageState extends State<LoginPage> {
                       SpacerV(value: Dimens.space24),
                       Button(
                         title: "Login",
-                        onPressed: () {
+                        onPressed: () async {
                           if (_keyForm.currentState?.validate() ?? false) {
-                            context.read<LoginCubit>().login(
+                            await context.read<LoginCubit>().login(
                                   email: _conEmail.text,
                                   password: _conPassword.text,
                                 );

@@ -33,7 +33,7 @@ class AppRoute {
     context = context;
   }
 
-  static final GoRouter router = GoRouter(
+  static final router = GoRouter(
       routes: [
         GoRoute(
           path: Routes.splashScreen.path,
@@ -73,8 +73,10 @@ class AppRoute {
       debugLogDiagnostics: kDebugMode,
 
       redirect: (ctx, state) {
-
+        print(state.matchedLocation == Routes.login.path);
         final isHomePage = state.matchedLocation == Routes.home.path;
+        print(isHomePage);
+        print(ctx.read<LoginCubit>().state.user);
         if (isHomePage && ctx.read<LoginCubit>().state.user == null) {
           return Routes.login.path;
         }
