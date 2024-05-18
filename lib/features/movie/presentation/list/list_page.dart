@@ -69,11 +69,7 @@ class ListPage extends StatelessWidget {
                       fillColor: Palette.textDark,
                       hintText: "Search for a film",
                     ),
-                    style: const TextStyle(
-                      fontFamily: "Poppins",
-                      fontWeight: FontWeight.w300,
-                      color: Palette.text,
-                    ),
+                    style: Theme.of(context).textTheme.bodyLarge,
                     validator: (value) => _validateSearch(value),
                     onFieldSubmitted: (value) => context
                         .read<ListCubit>()
@@ -91,7 +87,6 @@ class ListPage extends StatelessWidget {
             heightFactor: 1,
             child: Container(
               color: Palette.backgroundDark,
-              margin: EdgeInsets.only(top: Dimens.space12),
               padding: EdgeInsets.symmetric(
                   vertical: Dimens.space12, horizontal: Dimens.space6),
               child:

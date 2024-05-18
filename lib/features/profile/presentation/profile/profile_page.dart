@@ -20,10 +20,7 @@ class ProfilePage extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text(
-                style: TextStyle(
-                    fontFamily: "Poppins",
-                    fontWeight: FontWeight.w400,
-                    fontSize: Dimens.titleLarge),
+                style: Theme.of(context).textTheme.titleLarge,
                 "Profile"),
           ],
         ),
