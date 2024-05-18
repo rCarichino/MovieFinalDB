@@ -10,6 +10,7 @@ import '../../../../core/routes/app_routes.dart';
 import '../../../../core/widgets/bottom_navigation_bar.dart';
 import '../../../../core/widgets/error_dialog.dart';
 import '../../../../core/widgets/loading.dart';
+import '../../../../core/widgets/search_form.dart';
 import 'cubits/list_cubit.dart';
 
 class ListPage extends StatelessWidget {
@@ -18,13 +19,6 @@ class ListPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final formKey = GlobalKey<FormState>();
-
-    String? _validateSearch(value) {
-      if (value == null) {
-        return "Look for something to search first";
-      }
-      return null;
-    }
 
     return Scaffold(
       appBar: AppBar(
@@ -36,28 +30,7 @@ class ListPage extends StatelessWidget {
               end: Alignment.bottomRight,
             )),
           ),
-          title: Form(
-            key: formKey,
-            child: Column(
-              children: [
-                TextFormField(
-                    decoration: InputDecoration(
-                      border: OutlineInputBorder(
-                          borderRadius:
-                              BorderRadius.circular(Dimens.cornerRadius),
-                          borderSide: BorderSide.none),
-                      filled: true,
-                      fillColor: Palette.textDark,
-                      hintText: "Search for a film",
-                    ),
-                    style: Theme.of(context).textTheme.bodyLarge,
-                    validator: (value) => _validateSearch(value),
-                    onFieldSubmitted: (value) => context
-                        .read<ListCubit>()
-                        .getSearchedMovies(query: value.trim())),
-              ],
-            ),
-          ),
+          title: SearchForm(formKey: formKey),
           actions: [
             IconButton(onPressed: () {}, icon: const Icon(Icons.search))
           ]),
@@ -124,7 +97,4 @@ class ListPage extends StatelessWidget {
       bottomNavigationBar: bottomNavigationBar(context),
     );
   }
-
-
 }
-
