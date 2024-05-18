@@ -16,8 +16,6 @@ class LoginCubit extends Cubit<LoginState> {
   Future<void> login({required String email, required String password}) async {
     final authParams = AuthParams(email: email, password: password);
     final user = await loginUser.call(authParams);
-    print("User: ${user}");
-    print("-------");
     user.fold(
         (failure) =>
             emit(state.copyWith(error: (failure as ServerFailure).message)),
@@ -29,8 +27,5 @@ class LoginCubit extends Cubit<LoginState> {
 
   void logoutUser() {
     emit(state.copyWith(user: null));
-    print(state.user);
-    print("----------");
   }
-
 }

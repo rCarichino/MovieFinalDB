@@ -15,8 +15,7 @@ class DioClient {
       required ResponseConverter<T> converter}) async {
     try {
       queryParameters!['api_key'] = dotenv.env["APPID"];
-      final response = await dio.get(url,
-          queryParameters: queryParameters);
+      final response = await dio.get(url, queryParameters: queryParameters);
       if (response.statusCode != 200) {
         throw DioException(
             requestOptions: response.requestOptions, response: response);
