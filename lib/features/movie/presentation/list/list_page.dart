@@ -1,10 +1,8 @@
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:dartz/dartz.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:moviedb/core/resources/palette.dart';
-import 'package:moviedb/core/widgets/circle_image.dart';
 
 import '../../../../core/resources/dimens.dart';
 import '../../../../core/resources/images.dart';
@@ -20,7 +18,7 @@ class ListPage extends StatelessWidget {
   Widget build(BuildContext context) {
     final formKey = GlobalKey<FormState>();
 
-    String? _validate(value) {
+    String? _validateSearch(value) {
       if (value == null) {
         return "Look for something to search first";
       }
@@ -76,7 +74,7 @@ class ListPage extends StatelessWidget {
                       fontWeight: FontWeight.w300,
                       color: Palette.text,
                     ),
-                    validator: (value) => _validate(value),
+                    validator: (value) => _validateSearch(value),
                     onFieldSubmitted: (value) => context
                         .read<ListCubit>()
                         .getSearchedMovies(query: value.trim())),

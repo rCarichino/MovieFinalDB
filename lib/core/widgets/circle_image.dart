@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:moviedb/core/widgets/loading.dart';
 import '../resources/dimens.dart';
-import '../resources/styles.dart';
 
 class CircleImage extends StatelessWidget {
   final String url;

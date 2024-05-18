@@ -9,7 +9,7 @@ class ColorLoader extends StatefulWidget {
   final double radius;
   final double dotRadius;
 
-  const ColorLoader({this.radius = 30.0, this.dotRadius = 6.0});
+  const ColorLoader({super.key, this.radius = 30.0, this.dotRadius = 6.0});
 
   @override
   _ColorLoaderState createState() => _ColorLoaderState();
@@ -191,7 +191,7 @@ class Dot extends StatelessWidget {
   final double? radius;
   final Color? color;
 
-  const Dot({this.radius, this.color});
+  const Dot({super.key, this.radius, this.color});
 
   @override
   Widget build(BuildContext context) {

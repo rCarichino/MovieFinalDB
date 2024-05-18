@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-import 'package:moviedb/features/auth/presentation/login/cubits/login_cubit.dart';
 import 'package:moviedb/features/auth/presentation/registration/cubits/registration_cubit.dart';
 import 'package:oktoast/oktoast.dart';
 
@@ -9,7 +8,6 @@ import '../../../../core/resources/dimens.dart';
 import '../../../../core/resources/images.dart';
 import '../../../../core/routes/app_routes.dart';
 import '../../../../core/widgets/button.dart';
-import '../../../../core/widgets/button_text.dart';
 import '../../../../core/widgets/spacer_v.dart';
 import '../../../../core/widgets/text_f.dart';
 import '../../../../utils/validator.dart';

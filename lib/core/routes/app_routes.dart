@@ -1,13 +1,10 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-import 'package:moviedb/features/auth/presentation/login/cubits/login_cubit.dart';
 import 'package:moviedb/features/auth/presentation/registration/registration_page.dart';
 import 'package:moviedb/features/movie/presentation/details/detail_page.dart';
 import 'package:moviedb/features/movie/presentation/list/list_page.dart';
-import 'package:moviedb/features/profile/presentation/profile/cubits/profile_cubit.dart';
 import 'package:moviedb/features/profile/presentation/profile/profile_page.dart';
 import 'package:moviedb/features/splashscreen/splash_screen_page.dart';
 
@@ -53,7 +50,7 @@ class AppRoute {
         GoRoute(
             path: Routes.profile.path,
             name: Routes.profile.name,
-            builder: (context, state) => ProfilePage()),
+            builder: (context, state) => const ProfilePage()),
         GoRoute(
             path: Routes.login.path,
             name: Routes.login.name,
@@ -73,7 +70,7 @@ class AppRoute {
       routerNeglect: true,
       debugLogDiagnostics: kDebugMode,
 
-      redirect: (ctx, state) {
+      redirect: (context, state) {
         final isHomePage = state.matchedLocation == Routes.home.path;
 
         if (isHomePage && FirebaseAuth.instance.currentUser == null) {

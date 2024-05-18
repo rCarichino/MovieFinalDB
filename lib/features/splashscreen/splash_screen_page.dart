@@ -8,6 +8,8 @@ import '../../core/routes/app_routes.dart';
 import '../movie/presentation/list/cubits/list_cubit.dart';
 
 class SplashScreenPage extends StatefulWidget {
+  const SplashScreenPage({super.key});
+
   @override
   _SplashScreenPageState createState() => _SplashScreenPageState();
 }

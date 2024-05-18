@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'color_loaders.dart';
 
 class Loading extends StatelessWidget {
-  const Loading({this.showMessage = true});
+  const Loading({super.key, this.showMessage = true});
 
   final bool showMessage;
 
