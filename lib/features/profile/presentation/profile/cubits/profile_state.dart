@@ -9,10 +9,8 @@ class ProfileState extends Equatable {
     return ProfileState(user: FirebaseAuth.instance.currentUser);
   }
 
+  ProfileState copyWith({required User? user}) => ProfileState(user: user);
+
   @override
   List<Object?> get props => [user];
-
-  ProfileState copyWith({required User? user}) {
-    return ProfileState(user: user);
-  }
 }
