@@ -23,6 +23,13 @@ class _EditUserProfileFormState extends State<EditUserProfileForm> {
   bool imageUrlFieldDisplayed = false;
 
   @override
+  void dispose() {
+    _conUserName.dispose();
+    _conImageUrl.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Form(
         key: _formKey,
@@ -46,7 +53,7 @@ class _EditUserProfileFormState extends State<EditUserProfileForm> {
                 child: TextFormField(
                   controller: _conUserName,
                   validator: (String? value) =>
-                      validateUserName(value) ? value : null,
+                      validateUserName(value) ? "eroor" : null,
                   decoration: InputDecoration(
                       labelText: "Modifica Username",
                       hintText: context
@@ -90,9 +97,11 @@ class _EditUserProfileFormState extends State<EditUserProfileForm> {
                 child: ElevatedButton(
                     onPressed: () {
                       showEditingSnackbarAndDoEdit(
-                          userName: _conUserName.text,
-                          imageUrl: _conImageUrl.text,
+                          userName: _conUserName.text.trim(),
+                          imageUrl: _conImageUrl.text.trim(),
                           context: context);
+                      _conImageUrl.clear();
+                      _conUserName.clear();
                     },
                     child: Text("Modifica")),
               )
@@ -107,8 +116,9 @@ void showEditingSnackbarAndDoEdit({
   required String imageUrl,
   required BuildContext context,
 }) {
-  String newImageUrl =
-      "${Uri.parse(imageUrl).host}/${Uri.parse(imageUrl).pathSegments.first}";
+  String newImageUrl = imageUrl.isNotEmpty
+      ? "${Uri.parse(imageUrl).host}/${Uri.parse(imageUrl).pathSegments.first}"
+      : '';
   ScaffoldMessenger.of(context).showSnackBar(
     SnackBar(
       content: Text(
@@ -116,7 +126,5 @@ void showEditingSnackbarAndDoEdit({
       ),
     ),
   );
-  context
-      .read<ProfileCubit>()
-      .doEditProfile(userName: userName.trim(), url: imageUrl.trim());
+  context.read<ProfileCubit>().doEditProfile(userName: userName, url: imageUrl);
 }

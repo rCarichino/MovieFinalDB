@@ -42,9 +42,8 @@ class _SendEmailVerificationFormState extends State<SendEmailVerificationForm> {
               )
             else
               Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(
+                  const Text(
                       "Email is already verified, you can insert current password"),
                   TextFormField(
                     controller: _conPassword,
@@ -53,19 +52,19 @@ class _SendEmailVerificationFormState extends State<SendEmailVerificationForm> {
                     decoration:
                         const InputDecoration(hintText: "Actual password"),
                   ),
+                  ElevatedButton(
+                      onPressed: () async {
+                        if (_formKey.currentState!.validate()) {
+                          await context
+                              .read<ProfileCubit>()
+                              .doReset(password: _conPassword.text);
+                          ScaffoldMessenger.of(context).showSnackBar(
+                              const SnackBar(content: Text("Email sent")));
+                        }
+                      },
+                      child: const Text("Send Email"))
                 ],
               ),
-            ElevatedButton(
-                onPressed: () async {
-                  if (_formKey.currentState!.validate()) {
-                    await context
-                        .read<ProfileCubit>()
-                        .doReset(password: _conPassword.text);
-                    ScaffoldMessenger.of(context).showSnackBar(
-                        const SnackBar(content: Text("Email sent")));
-                  }
-                },
-                child: const Text("Send Email"))
           ],
         ),
       ),
