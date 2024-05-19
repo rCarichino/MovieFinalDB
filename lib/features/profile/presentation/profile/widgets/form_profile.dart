@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:moviedb/features/profile/presentation/profile/cubits/profile_cubit.dart';
 import 'package:moviedb/utils/validator.dart';
 
 class FormProfile extends StatefulWidget {
@@ -22,17 +24,23 @@ class _FormProfileState extends State<FormProfile> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
+            Text("Change password with email verification"),
+            Text(
+                "Email will be sent to:\n${context.read<ProfileCubit>().state.user?.email}"),
             TextFormField(
               controller: _conPassword,
               validator: (String? value) =>
                   isValidPassword(value) ? value : null,
-              decoration: const InputDecoration(hintText: "********"),
+              decoration: const InputDecoration(hintText: "Actual password"),
             ),
             ElevatedButton(
-                onPressed: () {
+                onPressed: () async {
                   if (_formKey.currentState!.validate()) {
+                    await context
+                        .read<ProfileCubit>()
+                        .doReset(password: _conPassword.text);
                     ScaffoldMessenger.of(context)
-                        .showSnackBar(const SnackBar(content: Text("")));
+                        .showSnackBar(const SnackBar(content: Text("Email sent")));
                   }
                 },
                 child: const Text("VALIDATE"))

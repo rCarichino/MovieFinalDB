@@ -3,16 +3,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:moviedb/core/widgets/button.dart';
-import 'package:moviedb/core/widgets/container_profile.dart';
-import 'package:moviedb/core/widgets/error_dialog.dart';
-import 'package:moviedb/core/widgets/form_profile.dart';
 import 'package:moviedb/features/profile/presentation/profile/cubits/profile_cubit.dart';
+import 'package:moviedb/features/profile/presentation/profile/widgets/container_profile.dart';
+import 'package:moviedb/features/profile/presentation/profile/widgets/delete_user_dialog_profile.dart';
+import 'package:moviedb/features/profile/presentation/profile/widgets/form_profile.dart';
 
 import '../../../../core/resources/dimens.dart';
 import '../../../../core/resources/palette.dart';
 import '../../../../core/routes/app_routes.dart';
 import '../../../../core/widgets/bottom_navigation_bar.dart';
-import '../../../../core/widgets/delete_user_dialog.dart';
 import '../../../auth/presentation/login/cubits/login_cubit.dart';
 
 class ProfilePage extends StatelessWidget {
