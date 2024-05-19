@@ -1,8 +1,6 @@
 import 'package:dartz/dartz.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:moviedb/core/error/failure.dart';
-import 'package:moviedb/features/auth/domain/entities/auth_params.dart';
 import 'package:moviedb/features/profile/domain/repositories/profile_repository.dart';
 
 import '../../domain/entities/profile_details_params.dart';

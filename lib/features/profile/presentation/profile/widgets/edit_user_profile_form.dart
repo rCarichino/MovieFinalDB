@@ -20,25 +20,28 @@ class _EditUserProfileFormState extends State<EditUserProfileForm> {
   Widget build(BuildContext context) {
     return Form(
         key: _formKey,
-        child: Column(
-          children: [
-            TextFormField(
-              controller: _conUserName,
-              validator: (String? value) =>
-                  validateUserName(value) ? value : null,
-              decoration: InputDecoration(hintText: "${context.watch<ProfileCubit>().state.user!.displayName}"),
-            ),
-            TextFormField(
-              controller: _conImageUrl,
-              decoration: InputDecoration(hintText: "${context.watch<ProfileCubit>().state.user!.photoURL}"),
-            ),
-            ElevatedButton(
-                onPressed: () {
-                  context.read<ProfileCubit>().doEditProfile(
-                      userName: _conUserName.text, url: _conImageUrl.text);
-                },
-                child: Text("Modifica"))
-          ],
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Column(
+            children: [
+              TextFormField(
+                controller: _conUserName,
+                validator: (String? value) =>
+                    validateUserName(value) ? value : null,
+                decoration: InputDecoration(hintText: "${context.watch<ProfileCubit>().state.user!.displayName}"),
+              ),
+              TextFormField(
+                controller: _conImageUrl,
+                decoration: InputDecoration(hintText: "${context.watch<ProfileCubit>().state.user!.photoURL}"),
+              ),
+              ElevatedButton(
+                  onPressed: () {
+                    context.read<ProfileCubit>().doEditProfile(
+                        userName: _conUserName.text, url: _conImageUrl.text);
+                  },
+                  child: Text("Modifica"))
+            ],
+          ),
         ));
   }
 
