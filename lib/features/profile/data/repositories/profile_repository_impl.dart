@@ -45,4 +45,10 @@ class ProfileRepositoryImpl extends ProfileRepository {
       return Left(ResetEmailFailure(error.code));
     }
   }
+
+  @override
+  Future<Either<Failure, void>> editUserProfile(ResetParams resetParams) {
+    // TODO: implement editUserProfile
+    throw UnimplementedError();
+  }
 }

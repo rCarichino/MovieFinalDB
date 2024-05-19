@@ -1,16 +1,19 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:moviedb/core/widgets/button.dart';
 import 'package:moviedb/features/profile/presentation/profile/cubits/profile_cubit.dart';
 import 'package:moviedb/utils/validator.dart';
 
-class FormProfile extends StatefulWidget {
-  const FormProfile({super.key});
+class SendEmailVerificationForm extends StatefulWidget {
+  const SendEmailVerificationForm({super.key});
 
   @override
-  State<FormProfile> createState() => _FormProfileState();
+  State<SendEmailVerificationForm> createState() =>
+      _SendEmailVerificationFormState();
 }
 
-class _FormProfileState extends State<FormProfile> {
+class _SendEmailVerificationFormState extends State<SendEmailVerificationForm> {
   final _formKey = GlobalKey<FormState>();
 
   final _conPassword = TextEditingController();
@@ -26,7 +29,12 @@ class _FormProfileState extends State<FormProfile> {
           children: [
             Text("Change password with email verification"),
             Text(
-                "Email will be sent to:\n${context.read<ProfileCubit>().state.user?.email}"),
+                "Email will be sent to: ${context.read<ProfileCubit>().state.user?.email}\nIn order to receive the link, email must be verified"),
+            ElevatedButton(
+                onPressed: () async {
+                  await _sendEmailVerification(context);
+                },
+                child: const Text("Verify")),
             TextFormField(
               controller: _conPassword,
               validator: (String? value) =>
@@ -39,14 +47,25 @@ class _FormProfileState extends State<FormProfile> {
                     await context
                         .read<ProfileCubit>()
                         .doReset(password: _conPassword.text);
-                    ScaffoldMessenger.of(context)
-                        .showSnackBar(const SnackBar(content: Text("Email sent")));
+                    ScaffoldMessenger.of(context).showSnackBar(
+                        const SnackBar(content: Text("Email sent")));
                   }
                 },
-                child: const Text("VALIDATE"))
+                child: const Text("Send Email"))
           ],
         ),
       ),
     );
   }
+}
+
+Future<void> _sendEmailVerification(context) async {
+  String text = '';
+  if (!FirebaseAuth.instance.currentUser!.emailVerified) {
+    text = 'Email Link Sent';
+    await FirebaseAuth.instance.currentUser?.sendEmailVerification();
+  } else {
+    text = 'Email Already Verified';
+  }
+  ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(text)));
 }

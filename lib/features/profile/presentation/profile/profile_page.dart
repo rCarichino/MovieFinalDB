@@ -6,7 +6,8 @@ import 'package:moviedb/core/widgets/button.dart';
 import 'package:moviedb/features/profile/presentation/profile/cubits/profile_cubit.dart';
 import 'package:moviedb/features/profile/presentation/profile/widgets/container_profile.dart';
 import 'package:moviedb/features/profile/presentation/profile/widgets/delete_user_dialog_profile.dart';
-import 'package:moviedb/features/profile/presentation/profile/widgets/form_profile.dart';
+import 'package:moviedb/features/profile/presentation/profile/widgets/send_email_verification_form.dart';
+import 'package:moviedb/features/profile/presentation/profile/widgets/edit_user_profile_form.dart';
 
 import '../../../../core/resources/dimens.dart';
 import '../../../../core/resources/palette.dart';
@@ -48,12 +49,12 @@ class ProfilePage extends StatelessWidget {
               ContainerProfile(
                 dimens: MediaQuery.of(context).size.height * 0.35,
                 palette: Palette.cardDark,
-                child: Text(""),
+                child: EditUserProfileForm(),
               ),
               ContainerProfile(
                 dimens: MediaQuery.of(context).size.height * 0.30,
                 palette: Palette.background,
-                child: FormProfile(),
+                child: SendEmailVerificationForm(),
               ),
               ContainerProfile(
                 dimens: MediaQuery.of(context).size.height * 0.181,
