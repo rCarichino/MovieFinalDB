@@ -5,6 +5,7 @@ import 'package:moviedb/core/error/failure.dart';
 import 'package:moviedb/features/auth/domain/entities/auth_params.dart';
 import 'package:moviedb/features/profile/domain/repositories/profile_repository.dart';
 
+import '../../domain/entities/profile_details_params.dart';
 import '../../domain/entities/reset_params.dart';
 
 class ProfileRepositoryImpl extends ProfileRepository {
@@ -47,8 +48,24 @@ class ProfileRepositoryImpl extends ProfileRepository {
   }
 
   @override
-  Future<Either<Failure, void>> editUserProfile(ResetParams resetParams) {
-    // TODO: implement editUserProfile
-    throw UnimplementedError();
+  Future<Either<Failure, User>> editUserProfile(
+      ProfileDetailsParams profileDetailsParams) async {
+    User? user = FirebaseAuth.instance.currentUser;
+    try {
+      //Modifica userName
+      profileDetailsParams.userName != ""
+          ? await user?.updateDisplayName(profileDetailsParams.userName)
+          : null;
+      //Modifica photoUrl
+      profileDetailsParams.photoUrl != ""
+          ? await user?.updatePhotoURL(profileDetailsParams.photoUrl)
+          : null;
+      //Aspetto che vengano aggiornati i dati
+      await user!.reload();
+      user = FirebaseAuth.instance.currentUser;
+      return Right(user!);
+    } on FirebaseAuthException catch (error) {
+      return Left(EditUserProfileFailure(error.code));
+    }
   }
 }

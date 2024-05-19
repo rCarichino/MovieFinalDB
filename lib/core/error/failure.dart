@@ -75,3 +75,23 @@ class ResetEmailFailure extends Failure {
     }
   }
 }
+
+class EditUserProfileFailure extends Failure {
+  final String code;
+  final String message;
+
+  EditUserProfileFailure(this.code)
+      : message = _mapErrorCodeToMessage(code),
+        super([code]);
+
+  static String _mapErrorCodeToMessage(String code) {
+    switch (code) {
+      case 'invalid-email':
+        return 'Indirizzo email non valido';
+      case 'user-not-found':
+        return 'Utente non trovato';
+      default:
+        return 'Si è verificato un errore durante l\'aggiornamento del profilo';
+    }
+  }
+}

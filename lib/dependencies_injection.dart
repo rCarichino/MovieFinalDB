@@ -7,6 +7,7 @@ import 'package:moviedb/features/auth/presentation/registration/cubits/registrat
 import 'package:moviedb/features/movie/data/datasources/movie_data_sources.dart';
 import 'package:moviedb/features/movie/presentation/list/cubits/list_cubit.dart';
 import 'package:moviedb/features/profile/domain/usecases/do_delete_user.dart';
+import 'package:moviedb/features/profile/domain/usecases/do_edit_user_profile.dart';
 import 'package:moviedb/features/profile/domain/usecases/do_reset_params.dart';
 import 'package:moviedb/features/profile/presentation/profile/cubits/profile_cubit.dart';
 
@@ -53,6 +54,7 @@ void _useCase() {
   getIt.registerLazySingleton(() => LoginUser(getIt()));
   getIt.registerLazySingleton(() => DoResetParams(getIt()));
   getIt.registerLazySingleton(() => DoDeleteUser(getIt()));
+  getIt.registerLazySingleton(() => DoEditUserProfile(getIt()));
 }
 
 void _cubit() {
@@ -62,5 +64,5 @@ void _cubit() {
   getIt.registerFactory(() => LoginCubit(loginUser: getIt()));
   getIt.registerFactory(() => RegistrationCubit(createUser: getIt()));
   getIt.registerFactory(
-      () => ProfileCubit(doResetParams: getIt(), doDeleteUser: getIt()));
+      () => ProfileCubit(doResetParams: getIt(), doDeleteUser: getIt(), doEditUserProfile: getIt()));
 }

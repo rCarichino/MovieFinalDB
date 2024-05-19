@@ -27,20 +27,34 @@ class _SendEmailVerificationFormState extends State<SendEmailVerificationForm> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
-            Text("Change password with email verification"),
-            Text(
-                "Email will be sent to: ${context.read<ProfileCubit>().state.user?.email}\nIn order to receive the link, email must be verified"),
-            ElevatedButton(
-                onPressed: () async {
-                  await _sendEmailVerification(context);
-                },
-                child: const Text("Verify")),
-            TextFormField(
-              controller: _conPassword,
-              validator: (String? value) =>
-                  isValidPassword(value) ? value : null,
-              decoration: const InputDecoration(hintText: "Actual password"),
-            ),
+            Text("Change password with email link"),
+            if (!context.watch<ProfileCubit>().state.user!.emailVerified)
+              Column(
+                children: [
+                  Text(
+                      "Email will be sent to: ${context.read<ProfileCubit>().state.user?.email}\nIn order to receive the link, email must be verified"),
+                  ElevatedButton(
+                      onPressed: () async {
+                        await _sendEmailVerification(context);
+                      },
+                      child: const Text("Verify")),
+                ],
+              )
+            else
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                      "Email is already verified, you can insert current password"),
+                  TextFormField(
+                    controller: _conPassword,
+                    validator: (String? value) =>
+                        isValidPassword(value) ? value : null,
+                    decoration:
+                        const InputDecoration(hintText: "Actual password"),
+                  ),
+                ],
+              ),
             ElevatedButton(
                 onPressed: () async {
                   if (_formKey.currentState!.validate()) {

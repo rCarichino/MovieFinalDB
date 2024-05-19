@@ -14,7 +14,10 @@ String? validateEmail(String? value) {
 }
 
 bool isValidPassword(String? value) {
-  return RegExp(
-      r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!@#\$&*~]).{8,}$')
+  return RegExp(r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!@#\$&*~]).{8,}$')
       .hasMatch(value!);
+}
+
+bool validateUserName(String? value) {
+  return RegExp(r'^(?=.*?[A-Z]).{2,}$').hasMatch(value!);
 }
