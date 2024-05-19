@@ -13,13 +13,21 @@ void deleteUserDialog(BuildContext context) {
         context: context,
         builder: (context) {
           return CupertinoAlertDialog(
-            title: const Text("Insert Current Password"),
+            title: const Text(
+                style: TextStyle(
+                  fontFamily: "Poppins",
+                ),
+                "Insert Current Password"),
             content: TextField(
               controller: conPassword,
             ),
             actions: [
               CupertinoDialogAction(
-                child: const Text("Elimina Account"),
+                child: const Text(
+                    style: TextStyle(
+                      fontFamily: "Poppins",
+                    ),
+                    "Delete account"),
                 onPressed: () => context
                     .read<ProfileCubit>()
                     .doDelete(password: conPassword.text),
@@ -32,13 +40,21 @@ void deleteUserDialog(BuildContext context) {
         context: context,
         builder: (context) {
           return AlertDialog(
-            title: const Text("Insert Current Password"),
+            title: const Text(
+                style: TextStyle(
+                  fontFamily: "Poppins",
+                ),
+                "Insert current password"),
             content: TextField(
               controller: conPassword,
             ),
             actions: [
               TextButton(
-                child: const Text("Elimina Account"),
+                child: const Text(
+                    style: TextStyle(
+                      fontFamily: "Poppins",
+                    ),
+                    "Delete account"),
                 onPressed: () => context
                     .read<ProfileCubit>()
                     .doDelete(password: conPassword.text.trim()),

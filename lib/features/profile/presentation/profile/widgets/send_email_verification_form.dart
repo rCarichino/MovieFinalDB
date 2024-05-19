@@ -1,8 +1,11 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:moviedb/core/resources/palette.dart';
 import 'package:moviedb/features/profile/presentation/profile/cubits/profile_cubit.dart';
 import 'package:moviedb/utils/validator.dart';
+
+import '../../../../../core/widgets/spacer_v.dart';
 
 class SendEmailVerificationForm extends StatefulWidget {
   const SendEmailVerificationForm({super.key});
@@ -26,32 +29,56 @@ class _SendEmailVerificationFormState extends State<SendEmailVerificationForm> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
-            Text("Change password with email link"),
+            Text(
+                style: Theme.of(context).textTheme.headlineSmall,
+                "Change password with email link"),
             if (!context.watch<ProfileCubit>().state.user!.emailVerified)
               Column(
                 children: [
                   Text(
+                      style: Theme.of(context).textTheme.titleMedium,
                       "Email will be sent to: ${context.read<ProfileCubit>().state.user?.email}\nIn order to receive the link, email must be verified"),
+                  const SpacerV(),
                   ElevatedButton(
+                      style: const ButtonStyle(
+                          backgroundColor:
+                              WidgetStatePropertyAll(Palette.primary)),
                       onPressed: () async {
                         await _sendEmailVerification(context);
                       },
-                      child: const Text("Verify")),
+                      child: const Text(
+                          style: TextStyle(
+                              fontSize: 20,
+                              letterSpacing: 1.5,
+                              fontFamily: "Poppins",
+                              color: Palette.background),
+                          "Verify")),
                 ],
               )
             else
               Column(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  const Text(
+                  Text(
+                      style: Theme.of(context).textTheme.labelLarge,
                       "Email is already verified, you can insert current password"),
+                  const SpacerV(),
                   TextFormField(
                     controller: _conPassword,
                     validator: (String? value) =>
                         isValidPassword(value) ? value : null,
-                    decoration:
-                        const InputDecoration(hintText: "Actual password"),
+                    decoration: const InputDecoration(
+                        hintText: "Actual password",
+                        hintStyle: TextStyle(
+                          fontFamily: "Poppins",
+                        )),
                   ),
+                  const SpacerV(),
                   ElevatedButton(
+                      style: const ButtonStyle(
+                        backgroundColor:
+                            WidgetStatePropertyAll(Palette.primary),
+                      ),
                       onPressed: () async {
                         if (_formKey.currentState!.validate()) {
                           await context
@@ -61,7 +88,12 @@ class _SendEmailVerificationFormState extends State<SendEmailVerificationForm> {
                               const SnackBar(content: Text("Email sent")));
                         }
                       },
-                      child: const Text("Send Email"))
+                      child: const Text(
+                          style: TextStyle(
+                            color: Palette.background,
+                            fontFamily: "Poppins",
+                          ),
+                          "Send Email"))
                 ],
               ),
           ],
