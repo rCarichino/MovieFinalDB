@@ -53,9 +53,10 @@ class _EditUserProfileFormState extends State<EditUserProfileForm> {
                 child: TextFormField(
                   controller: _conUserName,
                   validator: (String? value) =>
-                      validateUserName(value) ? "eroor" : null,
+                      validateUserName(value) ? "error" : null,
                   decoration: InputDecoration(
                       labelText: "Modifica Username",
+                      labelStyle: const TextStyle(fontFamily: "Poppins"),
                       hintText: context
                               .watch<ProfileCubit>()
                               .state
@@ -87,6 +88,9 @@ class _EditUserProfileFormState extends State<EditUserProfileForm> {
                   controller: _conImageUrl,
                   decoration: InputDecoration(
                       labelText: "Modifica ProfileUrl",
+                      labelStyle: const TextStyle(
+                        fontFamily: "Poppins"
+                      ),
                       hintText:
                           context.watch<ProfileCubit>().state.user?.photoURL ??
                               ''),
@@ -103,7 +107,10 @@ class _EditUserProfileFormState extends State<EditUserProfileForm> {
                       _conImageUrl.clear();
                       _conUserName.clear();
                     },
-                    child: Text("Modifica")),
+                    child: const Text(
+                        style: TextStyle(
+                          fontFamily: "Poppins"
+                        ),"Modifica")),
               )
             ],
           ),
