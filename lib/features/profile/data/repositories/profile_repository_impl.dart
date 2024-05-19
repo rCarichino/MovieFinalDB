@@ -35,10 +35,10 @@ class ProfileRepositoryImpl extends ProfileRepository {
       AuthCredential credential = EmailAuthProvider.credential(
           email: "${user!.email}", password: "${resetParams.password}");
       //Reautentication
-      await user?.reauthenticateWithCredential(credential);
+      await user.reauthenticateWithCredential(credential);
       //Sending email link for password reset
       await FirebaseAuth.instance
-          .sendPasswordResetEmail(email: "${user?.email}");
+          .sendPasswordResetEmail(email: "${user.email}");
       return const Right(null);
     } on FirebaseAuthException catch (error) {
       return Left(ResetEmailFailure(error.code));

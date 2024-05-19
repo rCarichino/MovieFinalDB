@@ -1,6 +1,5 @@
 import 'package:equatable/equatable.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:moviedb/features/profile/domain/entities/profile_details_params.dart';
 

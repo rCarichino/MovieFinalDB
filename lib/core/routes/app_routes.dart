@@ -70,7 +70,6 @@ class AppRoute {
       routerNeglect: true,
       debugLogDiagnostics: kDebugMode,
       redirect: (context, state) {
-        print("PROVA ${FirebaseAuth.instance.currentUser}");
         final bool isHomePage = state.matchedLocation == Routes.home.path;
 
         if (isHomePage && FirebaseAuth.instance.currentUser == null) {

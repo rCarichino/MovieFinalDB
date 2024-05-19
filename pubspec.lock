@@ -113,14 +113,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "5.4.3+1"
-  easy_search_bar:
-    dependency: "direct main"
-    description:
-      name: easy_search_bar
-      sha256: b20343be8ab94ed9e1550cf8cbd5323c344bd9b58b9319fb6e62d75395c0bcaa
-      url: "https://pub.dev"
-    source: hosted
-    version: "2.5.0"
   equatable:
     dependency: "direct main"
     description:
@@ -601,10 +593,10 @@ packages:
     dependency: transitive
     description:
       name: win32
-      sha256: a79dbe579cb51ecd6d30b17e0cae4e0ea15e2c0e66f69ad4198f22a6789e94f4
+      sha256: "0eaf06e3446824099858367950a813472af675116bf63f008a4c2a75ae13e9cb"
       url: "https://pub.dev"
     source: hosted
-    version: "5.5.1"
+    version: "5.5.0"
   xdg_directories:
     dependency: transitive
     description:
@@ -614,5 +606,5 @@ packages:
     source: hosted
     version: "1.0.4"
 sdks:
-  dart: ">=3.4.0 <4.0.0"
+  dart: ">=3.3.4 <4.0.0"
   flutter: ">=3.18.0-18.0.pre.54"

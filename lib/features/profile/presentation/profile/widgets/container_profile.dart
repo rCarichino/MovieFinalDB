@@ -1,7 +1,5 @@
-import 'dart:ffi';
 
 import 'package:flutter/cupertino.dart';
-import 'package:moviedb/core/resources/dimens.dart';
 import 'package:moviedb/core/resources/palette.dart';
 
 class ContainerProfile extends StatelessWidget {
