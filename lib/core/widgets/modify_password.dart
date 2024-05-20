@@ -7,17 +7,19 @@ import '../../features/profile/presentation/profile/cubits/profile_cubit.dart';
 import '../../utils/validator.dart';
 import '../resources/palette.dart';
 
-class ModifyPassword extends StatelessWidget {
-  const ModifyPassword({
-    super.key,
-    required FocusNode fnPassword,
-    required TextEditingController conPassword,
-    required GlobalKey<FormState> formKey,
-  }) : _fnPassword = fnPassword, _conPassword = conPassword, _formKey = formKey;
+class ModifyPassword extends StatefulWidget {
+  const ModifyPassword({super.key});
 
-  final FocusNode _fnPassword;
-  final TextEditingController _conPassword;
-  final GlobalKey<FormState> _formKey;
+  @override
+  State<ModifyPassword> createState() => _ModifyPasswordState();
+}
+
+class _ModifyPasswordState extends State<ModifyPassword> {
+  final _fnPasswordCurrent = FocusNode();
+  final _fnPasswordNew = FocusNode();
+  final _conPasswordCurrent = TextEditingController();
+  final _conPasswordNew = TextEditingController();
+  final _keyForm = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
@@ -29,43 +31,79 @@ class ModifyPassword extends StatelessWidget {
             style: Theme.of(context).textTheme.labelLarge,
             "Email is already verified, you can insert current password"),
         const SpacerV(),
-        TextF(
-          autofillHints: const [AutofillHints.password],
-          key: const Key("password"),
-          curFocusNode: _fnPassword,
-          textInputAction: TextInputAction.done,
-          controller: _conPassword,
-          keyboardType: TextInputType.text,
-          prefixIcon: Icon(
-            Icons.lock_outline,
-            color: Theme.of(context).textTheme.bodyLarge?.color,
+        AutofillGroup(
+          child: Form(
+            key: _keyForm,
+            child: Column(
+              children: [
+                TextF(
+                  autofillHints: const [AutofillHints.password],
+                  key: const Key("passwordCurrent"),
+                  curFocusNode: _fnPasswordCurrent,
+                  textInputAction: TextInputAction.done,
+                  controller: _conPasswordCurrent,
+                  keyboardType: TextInputType.text,
+                  prefixIcon: Icon(
+                    Icons.lock_outline,
+                    color: Theme.of(context).textTheme.bodyLarge?.color,
+                  ),
+                  obscureText: context.watch<ProfileCubit>().state.showPassword,
+                  hintText: 'Current password',
+                  maxLine: 1,
+                  hint: "Current password",
+                  suffixIcon: IconButton(
+                    icon: const Icon(Icons.remove_red_eye_outlined),
+                    onPressed: () =>
+                        context.read<ProfileCubit>().toggleShowPassword(),
+                  ),
+                  validator: (String? value) =>
+                      isValidPassword(value) ? value : null,
+                ),
+                const SpacerV(),
+                TextF(
+                    autofillHints: const [AutofillHints.password],
+                    key: const Key("passwordNew"),
+                    curFocusNode: _fnPasswordNew,
+                    textInputAction: TextInputAction.done,
+                    controller: _conPasswordNew,
+                    keyboardType: TextInputType.text,
+                    prefixIcon: Icon(
+                      Icons.lock_outline,
+                      color: Theme.of(context).textTheme.bodyLarge?.color,
+                    ),
+                    obscureText:
+                        context.watch<ProfileCubit>().state.showPassword,
+                    hintText: 'New password',
+                    maxLine: 1,
+                    hint: "New password",
+                    suffixIcon: IconButton(
+                      icon: const Icon(Icons.remove_red_eye_outlined),
+                      onPressed: () =>
+                          context.read<ProfileCubit>().toggleShowPassword(),
+                    ),
+                    validator: (String? value) {
+                      if (value != _conPasswordCurrent.text) {
+                        return isValidPassword(value) ? value : null;
+                      } else {
+                        return "The passwords match";
+                      }
+                    }),
+              ],
+            ),
           ),
-          obscureText: true,
-          hintText: 'Current password',
-          maxLine: 1,
-          hint: "password",
-          suffixIcon: IconButton(
-            icon: const Icon(Icons.remove_red_eye_outlined),
-            onPressed: () => context
-                .read<ProfileCubit>()
-                .toggleShowPassword(),
-          ),
-          validator: (String? value) =>
-          isValidPassword(value) ? value : null,
         ),
         const SpacerV(),
         ElevatedButton(
             style: const ButtonStyle(
-              backgroundColor:
-              WidgetStatePropertyAll(Palette.primary),
+              backgroundColor: WidgetStatePropertyAll(Palette.primary),
             ),
             onPressed: () async {
-              if (_formKey.currentState!.validate()) {
+              if (_keyForm.currentState!.validate()) {
                 await context
                     .read<ProfileCubit>()
-                    .doReset(password: _conPassword.text);
+                    .doChangePassword(password: _conPasswordNew.text);
                 ScaffoldMessenger.of(context).showSnackBar(
-                    const SnackBar(content: Text("Email sent")));
+                    const SnackBar(content: Text("Password  Changed")));
               }
             },
             child: const Text(
@@ -73,7 +111,7 @@ class ModifyPassword extends StatelessWidget {
                   color: Palette.background,
                   fontFamily: "Poppins",
                 ),
-                "Send Email"))
+                "Change Password"))
       ],
     );
   }

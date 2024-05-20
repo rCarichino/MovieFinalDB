@@ -8,11 +8,11 @@ class ProfileState extends Equatable {
 
   factory ProfileState.initial() {
     return ProfileState(
-        user: FirebaseAuth.instance.currentUser, showPassword: false);
+        user: FirebaseAuth.instance.currentUser, showPassword: true);
   }
 
   ProfileState copyWith({User? user, bool? showPassword}) =>
-      ProfileState(user: user, showPassword: showPassword ?? this.showPassword);
+      ProfileState(user: user ?? this.user , showPassword: showPassword ?? this.showPassword);
 
   @override
   List<Object?> get props => [user, showPassword];

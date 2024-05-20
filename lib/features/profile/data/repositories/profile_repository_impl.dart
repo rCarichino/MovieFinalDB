@@ -18,6 +18,8 @@ class ProfileRepositoryImpl extends ProfileRepository {
           email: "${user?.email}", password: "${resetParams.password}");
       //Reautentication
       await user?.reauthenticateWithCredential(credential);
+
+
       //Deleting user
       await user?.delete();
       return const Right(null);
@@ -27,7 +29,7 @@ class ProfileRepositoryImpl extends ProfileRepository {
   }
 
   @override
-  Future<Either<Failure, void>> resetParams(ResetParams resetParams) async {
+  Future<Either<Failure, User>> resetParams(ResetParams resetParams) async {
     //User will be alraedy logged in
     User? user = FirebaseAuth.instance.currentUser;
     try {
@@ -36,10 +38,11 @@ class ProfileRepositoryImpl extends ProfileRepository {
           email: "${user!.email}", password: "${resetParams.password}");
       //Reautentication
       await user.reauthenticateWithCredential(credential);
-      //Sending email link for password reset
-      await FirebaseAuth.instance
-          .sendPasswordResetEmail(email: "${user.email}");
-      return const Right(null);
+
+      await user.updatePassword(resetParams.newPassword!);
+
+      return  Right(FirebaseAuth.instance.currentUser!);
+
     } on FirebaseAuthException catch (error) {
       return Left(ResetEmailFailure(error.code));
     }

@@ -26,11 +26,11 @@ class ProfileCubit extends Cubit<ProfileState> {
 
   void signOutUser() => emit(state.copyWith(user: null));
 
-  Future<void> doReset({required String password}) async {
+  Future<void> doChangePassword({required String password}) async {
     final ResetParams resetParams = ResetParams(password: password);
     final response = await doResetParams.call(resetParams);
     response.fold((failure) => emit(state.copyWith(user: null)),
-        (success) => emit(state.copyWith(user: null)));
+        (success) => emit(state.copyWith(user: success)));
   }
 
   Future<void> doDelete({required String password}) async {

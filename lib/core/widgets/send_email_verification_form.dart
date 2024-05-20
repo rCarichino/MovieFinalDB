@@ -18,16 +18,15 @@ class SendEmailVerificationForm extends StatefulWidget {
 }
 
 class _SendEmailVerificationFormState extends State<SendEmailVerificationForm> {
-  final _formKey = GlobalKey<FormState>();
-  final _fnPassword = FocusNode();
-  final _conPassword = TextEditingController();
+  final _keyForm = GlobalKey<FormState>();
+
 
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.all(10),
       child: Form(
-        key: _formKey,
+        key: _keyForm,
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
@@ -58,8 +57,7 @@ class _SendEmailVerificationFormState extends State<SendEmailVerificationForm> {
                           "Verify")),
                 ],
               )
-            else
-              ModifyPassword(fnPassword: _fnPassword, conPassword: _conPassword, formKey: _formKey),
+            else ModifyPassword(),
           ],
         ),
       ),
