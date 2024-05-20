@@ -49,7 +49,7 @@ class Dimens {
   static double profilePicture = 110;
   static double birthdayCalendar = 120;
   static double container = 120;
-
+  static double containerDelete = 200;
   static double buttonH = 40;
   static double imageW = 125;
 

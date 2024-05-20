@@ -36,7 +36,7 @@ class _EditUserProfileFormState extends State<EditUserProfileForm> {
     return Form(
         key: _formKey,
         child: Padding(
-          padding: const EdgeInsets.all(5),
+          padding: EdgeInsets.all(Dimens.space3 + Dimens.space2),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [

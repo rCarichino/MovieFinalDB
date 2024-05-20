@@ -23,7 +23,7 @@ class DeleteUserSection extends StatelessWidget {
         ),
         Container(
             padding: EdgeInsets.only(right: Dimens.space24, left: Dimens.space12, top:  Dimens.space8),
-            height: 200,
+            height: Dimens.containerDelete,
             child: Text(
                 style: Theme.of(context).textTheme.labelMedium,
                 Texts.deleteText)),
