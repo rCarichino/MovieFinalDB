@@ -31,10 +31,13 @@ class ProfilePage extends StatelessWidget {
           actions: [
             BlocListener<ProfileCubit, ProfileState>(
               listener: (context, state) {
+
                 //Solo nel caso in cui lo state.user viene settato a null
                 if (state.user == null) {
+
                   context.read<LoginCubit>().logoutUser();
                   context.goNamed(Routes.login.name);
+
                 }
               },
               child: IconButton(
