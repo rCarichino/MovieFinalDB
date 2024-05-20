@@ -10,6 +10,7 @@ import '../../../../core/resources/images.dart';
 import '../../../../core/routes/app_routes.dart';
 import '../../../../core/widgets/button.dart';
 import '../../../../core/widgets/button_text.dart';
+import '../../../../core/widgets/retrieve_password.dart';
 import '../../../../core/widgets/spacer_v.dart';
 import '../../../../core/widgets/text_f.dart';
 import '../../../../utils/validator.dart';
@@ -113,6 +114,15 @@ class _LoginPageState extends State<LoginPage> {
                         ),
                         validator: (String? value) =>
                             isValidPassword(value) ? value : null,
+                      ),
+                      TextButton(
+                        child: const Text(
+                          'Forgot the password?',
+                          textAlign: TextAlign.left,
+                        ),
+                        onPressed: () {
+                          retrievePassword(context);
+                        },
                       ),
                       SpacerV(value: Dimens.space24),
                       Button(

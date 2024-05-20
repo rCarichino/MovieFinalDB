@@ -4,14 +4,16 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../../core/error/failure.dart';
 import '../../../domain/entities/auth_params.dart';
+import '../../../domain/usecases/change_password.dart';
 import '../../../domain/usecases/login_user.dart';
 
 part 'login_state.dart';
 
 class LoginCubit extends Cubit<LoginState> {
   final LoginUser loginUser;
+  final ChangePassword changePassword;
 
-  LoginCubit({required this.loginUser}) : super(LoginState.initial());
+  LoginCubit({required this.changePassword,required this.loginUser}) : super(LoginState.initial());
 
   Future<void> login({required String email, required String password}) async {
     final authParams = AuthParams(email: email, password: password);
@@ -32,4 +34,11 @@ class LoginCubit extends Cubit<LoginState> {
   bool isLoggedIn(){
     return state.user == null ? true : false;
 }
+
+Future<void> forgotPassword(String email) async{
+
+    await changePassword.call(email);
+
+}
+
 }

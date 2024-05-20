@@ -1,6 +1,7 @@
 import 'package:get_it/get_it.dart';
 import 'package:moviedb/features/auth/data/repositories/auth_repository_impl.dart';
 import 'package:moviedb/features/auth/domain/repositories/auth_repository.dart';
+import 'package:moviedb/features/auth/domain/usecases/change_password.dart';
 import 'package:moviedb/features/auth/domain/usecases/create_user.dart';
 import 'package:moviedb/features/auth/presentation/login/cubits/login_cubit.dart';
 import 'package:moviedb/features/auth/presentation/registration/cubits/registration_cubit.dart';
@@ -51,6 +52,7 @@ void _useCase() {
   getIt.registerLazySingleton(() => GetListMovie(getIt()));
   getIt.registerLazySingleton(() => GetSearchedMovie(getIt()));
   getIt.registerLazySingleton(() => CreateUser(getIt()));
+  getIt.registerLazySingleton(() => ChangePassword(getIt()));
   getIt.registerLazySingleton(() => LoginUser(getIt()));
   getIt.registerLazySingleton(() => DoResetParams(getIt()));
   getIt.registerLazySingleton(() => DoDeleteUser(getIt()));
@@ -61,7 +63,7 @@ void _cubit() {
   getIt.registerFactory(
       () => ListCubit(getPopularMovie: getIt(), getSearchedMovie: getIt()));
 
-  getIt.registerFactory(() => LoginCubit(loginUser: getIt()));
+  getIt.registerFactory(() => LoginCubit(loginUser: getIt(), changePassword: getIt()));
   getIt.registerFactory(() => RegistrationCubit(createUser: getIt()));
   getIt.registerFactory(
       () => ProfileCubit(doResetParams: getIt(), doDeleteUser: getIt(), doEditUserProfile: getIt()));

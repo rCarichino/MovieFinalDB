@@ -28,4 +28,15 @@ class AuthRepositoryImpl extends AuthRepository {
             email: authParams.email!, password: authParams.password!);
     return Right(userCredential);
   }
+
+  @override
+  Future<Either<Failure, void>> changePassword(String email) async {
+    try {
+      await FirebaseAuth.instance.sendPasswordResetEmail(email: email);
+    return const Right(null);
+    } on FirebaseAuthException catch (error) {
+    return Left(ResetEmailFailure(error.code));
+    }
+
+  }
 }

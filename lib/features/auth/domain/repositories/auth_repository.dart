@@ -8,5 +8,6 @@ abstract class AuthRepository{
 
   Future<Either<Failure,UserCredential>> register(AuthParams authParams);
   Future<Either<Failure, User>> login(AuthParams authParams);
+  Future<Either<Failure, void>> changePassword(String email);
 
 }
