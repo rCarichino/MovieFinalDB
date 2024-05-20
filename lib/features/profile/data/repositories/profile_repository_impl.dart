@@ -13,13 +13,9 @@ class ProfileRepositoryImpl extends ProfileRepository {
   Future<Either<Failure, void>> deleteUser(ResetParams resetParams) async {
     User? user = FirebaseAuth.instance.currentUser;
     try {
-      //Creating credential for reautentication
       AuthCredential credential = EmailAuthProvider.credential(
           email: "${user?.email}", password: "${resetParams.password}");
-      //Reautentication
       await user?.reauthenticateWithCredential(credential);
-
-      //Deleting user
       await user?.delete();
       return const Right(null);
     } on FirebaseAuthException catch (error) {
@@ -49,15 +45,12 @@ class ProfileRepositoryImpl extends ProfileRepository {
       ProfileDetailsParams profileDetailsParams) async {
     User? user = FirebaseAuth.instance.currentUser;
     try {
-      //Modifica userName
       profileDetailsParams.userName != ""
           ? await user?.updateDisplayName(profileDetailsParams.userName)
           : null;
-      //Modifica photoUrl
       profileDetailsParams.photoUrl != ""
           ? await user?.updatePhotoURL(profileDetailsParams.photoUrl)
           : null;
-      //Aspetto che vengano aggiornati i dati
       await user!.reload();
       user = FirebaseAuth.instance.currentUser;
       return Right(user!);
