@@ -6,7 +6,7 @@ import 'package:moviedb/core/widgets/text_f.dart';
 import 'package:moviedb/features/profile/presentation/profile/cubits/profile_cubit.dart';
 import 'package:moviedb/utils/validator.dart';
 
-import 'modifyPassword.dart';
+import 'modify_password.dart';
 import 'spacer_v.dart';
 
 class SendEmailVerificationForm extends StatefulWidget {
