@@ -95,7 +95,6 @@ class _ModifyPasswordState extends State<ModifyPassword> {
             ),
           ),
         ),
-        const SpacerV(),
         ElevatedButton(
             style: const ButtonStyle(
               backgroundColor: WidgetStatePropertyAll(Palette.primary),

@@ -2,9 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:moviedb/core/resources/palette.dart';
-import 'package:moviedb/core/widgets/text_f.dart';
 import 'package:moviedb/features/profile/presentation/profile/cubits/profile_cubit.dart';
-import 'package:moviedb/utils/validator.dart';
 
 import 'modify_password.dart';
 import 'spacer_v.dart';

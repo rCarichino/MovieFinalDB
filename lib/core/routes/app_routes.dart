@@ -36,7 +36,7 @@ class AppRoute {
         GoRoute(
           path: Routes.splashScreen.path,
           name: Routes.splashScreen.name,
-          builder: (context, state) => SplashScreenPage(),
+          builder: (context, state) => const SplashScreenPage(),
         ),
         GoRoute(
           path: Routes.root.path,

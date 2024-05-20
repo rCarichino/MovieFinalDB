@@ -55,7 +55,6 @@ class _LoginPageState extends State<LoginPage> {
         if (state.user != null) {
           context.goNamed(Routes.home.name);
         }
-
       }, builder: (context, state) {
         return Center(
           child: SingleChildScrollView(

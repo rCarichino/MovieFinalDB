@@ -31,13 +31,9 @@ class ProfilePage extends StatelessWidget {
           actions: [
             BlocListener<ProfileCubit, ProfileState>(
               listener: (context, state) {
-
-                //Solo nel caso in cui lo state.user viene settato a null
                 if (state.user == null) {
-
                   context.read<LoginCubit>().logoutUser();
                   context.goNamed(Routes.login.name);
-
                 }
               },
               child: IconButton(
@@ -56,7 +52,7 @@ class ProfilePage extends StatelessWidget {
               child: const EditUserProfileForm(),
             ),
             ContainerProfile(
-              dimens: MediaQuery.of(context).size.height * 0.38,
+              dimens: MediaQuery.of(context).size.height * 0.40,
               palette: Palette.background,
               child: const SendEmailVerificationForm(),
             ),

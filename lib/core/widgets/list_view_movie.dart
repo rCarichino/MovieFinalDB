@@ -37,7 +37,7 @@ class ListViewMovie extends StatelessWidget {
                         : "https://springerhealthcare.it/GIHTAD/wp-content/uploads/2021/03/placeholder.jpg"),
               ),
             ),
-        separatorBuilder: (context, index) => Divider(),
+        separatorBuilder: (context, index) => const Divider(),
         itemCount: context.read<ListCubit>().state.movie.length);
   }
 }
