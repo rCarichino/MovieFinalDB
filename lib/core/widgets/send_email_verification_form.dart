@@ -48,16 +48,12 @@ class _SendEmailVerificationFormState extends State<SendEmailVerificationForm> {
                       onPressed: () async {
                         await _sendEmailVerification(context);
                       },
-                      child: const Text(
-                          style: TextStyle(
-                              fontSize: 20,
-                              letterSpacing: 1.5,
-                              fontFamily: "Poppins",
-                              color: Palette.background),
+                      child: Text(
+                          style: Theme.of(context).textTheme.labelMedium,
                           "Verify")),
                 ],
               )
-            else ModifyPassword(),
+            else const ModifyPassword(),
           ],
         ),
       ),

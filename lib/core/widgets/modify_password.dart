@@ -47,19 +47,21 @@ class _ModifyPasswordState extends State<ModifyPassword> {
                     Icons.lock_outline,
                     color: Theme.of(context).textTheme.bodyLarge?.color,
                   ),
-                  obscureText: context.watch<ProfileCubit>().state.showPassword,
+                  obscureText: context.watch<ProfileCubit>().state.showCurrentPassword,
                   hintText: 'Current password',
                   maxLine: 1,
                   hint: "Current password",
                   suffixIcon: IconButton(
                     icon: const Icon(Icons.remove_red_eye_outlined),
                     onPressed: () =>
-                        context.read<ProfileCubit>().toggleShowPassword(),
+                        context.read<ProfileCubit>().toggleShowCurrentPassword(),
                   ),
                   validator: (String? value) =>
                       isValidPassword(value) ? value : null,
                 ),
+
                 const SpacerV(),
+
                 TextF(
                     autofillHints: const [AutofillHints.password],
                     key: const Key("passwordNew"),
@@ -72,14 +74,14 @@ class _ModifyPasswordState extends State<ModifyPassword> {
                       color: Theme.of(context).textTheme.bodyLarge?.color,
                     ),
                     obscureText:
-                        context.watch<ProfileCubit>().state.showPassword,
+                        context.watch<ProfileCubit>().state.showNewPassword,
                     hintText: 'New password',
                     maxLine: 1,
                     hint: "New password",
                     suffixIcon: IconButton(
                       icon: const Icon(Icons.remove_red_eye_outlined),
                       onPressed: () =>
-                          context.read<ProfileCubit>().toggleShowPassword(),
+                          context.read<ProfileCubit>().toggleShowNewPassword(),
                     ),
                     validator: (String? value) {
                       if (value != _conPasswordCurrent.text) {
@@ -88,6 +90,7 @@ class _ModifyPasswordState extends State<ModifyPassword> {
                         return "The passwords match";
                       }
                     }),
+
               ],
             ),
           ),
@@ -101,7 +104,7 @@ class _ModifyPasswordState extends State<ModifyPassword> {
               if (_keyForm.currentState!.validate()) {
                 await context
                     .read<ProfileCubit>()
-                    .doChangePassword(password: _conPasswordNew.text);
+                    .doChangePassword(password:_conPasswordCurrent.text, newPassword: _conPasswordNew.text);
                 ScaffoldMessenger.of(context).showSnackBar(
                     const SnackBar(content: Text("Password  Changed")));
               }
