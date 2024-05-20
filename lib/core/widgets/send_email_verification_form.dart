@@ -62,9 +62,12 @@ class _SendEmailVerificationFormState extends State<SendEmailVerificationForm> {
               Column(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text(
-                      style: Theme.of(context).textTheme.labelLarge,
-                      "Email is already verified, you can insert current password"),
+                  Align(
+                    alignment: Alignment.center,
+                    child: Text(
+                        style: Theme.of(context).textTheme.labelLarge,
+                        "Email is already verified, you can insert current password"),
+                  ),
                   const SpacerV(),
                   TextFormField(
                     controller: _conPassword,
