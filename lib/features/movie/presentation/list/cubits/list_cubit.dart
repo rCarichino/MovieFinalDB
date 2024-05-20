@@ -38,4 +38,8 @@ class ListCubit extends Cubit<ListState> {
         (movie) =>
             emit(state.copyWith(movie: movie, isLoading: false, error: "")));
   }
+
+  void toggleTypeView() {
+    emit(state.copyWith(isGrid: !state.isGrid));
+  }
 }
