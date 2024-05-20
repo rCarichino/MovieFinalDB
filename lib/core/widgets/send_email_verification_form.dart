@@ -35,12 +35,10 @@ class _SendEmailVerificationFormState extends State<SendEmailVerificationForm> {
             if (!context.watch<ProfileCubit>().state.user!.emailVerified)
               Column(
                 children: [
-                  Align(
-                    alignment: Alignment.center,
-                    child: Text(
-                        style: Theme.of(context).textTheme.titleMedium,
-                        "Email will be sent to: ${context.read<ProfileCubit>().state.user?.email}\nIn order to receive the link, email must be verified"),
-                  ),
+                  Text(
+                      textAlign: TextAlign.center,
+                      style: Theme.of(context).textTheme.titleMedium,
+                      "Email will be sent to: ${context.read<ProfileCubit>().state.user?.email}\nIn order to receive the link, email must be verified"),
                   const SpacerV(),
                   ElevatedButton(
                       style: const ButtonStyle(
@@ -62,12 +60,10 @@ class _SendEmailVerificationFormState extends State<SendEmailVerificationForm> {
               Column(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Align(
-                    alignment: Alignment.center,
-                    child: Text(
-                        style: Theme.of(context).textTheme.labelLarge,
-                        "Email is already verified, you can insert current password"),
-                  ),
+                  Text(
+                      textAlign: TextAlign.center,
+                      style: Theme.of(context).textTheme.labelLarge,
+                      "Email is already verified, you can insert current password"),
                   const SpacerV(),
                   TextFormField(
                     controller: _conPassword,
