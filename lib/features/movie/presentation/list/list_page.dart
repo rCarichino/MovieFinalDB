@@ -61,10 +61,12 @@ class ListPage extends StatelessWidget {
                     );
                   }
                   if (state.movie.isNotEmpty && !state.isLoading) {
-                    return state.isGrid ? GridViewMovie() : ListViewMovie();
+                    return state.isGrid
+                        ? const GridViewMovie()
+                        : const ListViewMovie();
                   }
                   if (state.movie.isEmpty && state.error.isEmpty) {
-                    return Center(
+                    return const Center(
                       child: Text("No data"),
                     );
                   }
