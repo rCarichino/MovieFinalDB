@@ -1,10 +1,12 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:moviedb/core/widgets/text_f.dart';
 import 'package:moviedb/features/profile/presentation/profile/cubits/profile_cubit.dart';
 import 'package:moviedb/utils/validator.dart';
 
 import '../resources/dimens.dart';
+import '../resources/palette.dart';
 
 class EditUserProfileForm extends StatefulWidget {
   const EditUserProfileForm({super.key});
@@ -45,25 +47,23 @@ class _EditUserProfileFormState extends State<EditUserProfileForm> {
                     });
                   },
                   child: Text(
-                      style: Theme.of(context).textTheme.headlineMedium,
+                      style: Theme.of(context).textTheme.headlineMedium?.copyWith(color: Palette.textDark),
                       context.watch<ProfileCubit>().state.user?.displayName ??
                           'Username still not set')),
               Visibility(
                 visible: userNameFieldDisplayed,
-                child: TextFormField(
-                  controller: _conUserName,
-                  validator: (String? value) =>
-                      validateUserName(value) ? "error" : null,
-                  decoration: InputDecoration(
-                      labelText: "Modifica Username",
-                      labelStyle: const TextStyle(fontFamily: "Poppins"),
-                      hintText: context
-                              .watch<ProfileCubit>()
-                              .state
-                              .user
-                              ?.displayName ??
-                          ''),
-                ),
+                child: TextF(
+                    controller: _conUserName,
+                    validator: (String? value) =>
+                        validateUserName(value) ? "error" : null,
+                    hint: "Modifica Username",
+                    hintText:
+                        context.watch<ProfileCubit>().state.user?.displayName ??
+                            "",
+                    prefixIcon: Icon(
+                      Icons.person,
+                      color: Theme.of(context).textTheme.bodyLarge?.color,
+                    )),
               ),
               InkWell(
                   onTap: () {
@@ -84,16 +84,16 @@ class _EditUserProfileFormState extends State<EditUserProfileForm> {
                   )),
               Visibility(
                 visible: imageUrlFieldDisplayed,
-                child: TextFormField(
-                  controller: _conImageUrl,
-                  decoration: InputDecoration(
-                      labelText: "Modifica ProfileUrl",
-                      labelStyle: const TextStyle(
-                        fontFamily: "Poppins"
-                      ),
-                      hintText:
-                          context.watch<ProfileCubit>().state.user?.photoURL ??
-                              ''),
+                child: TextF(
+                  controller: _conUserName,
+                  validator: (String? value) =>
+                      validateUserName(value) ? "error" : null,
+                  hint: "Modifica ProfileUrl",
+                  hintText: "Inserisci l'url",
+                  prefixIcon: Icon(
+                    Icons.photo,
+                    color: Theme.of(context).textTheme.bodyLarge?.color,
+                  ),
                 ),
               ),
               Visibility(
@@ -108,9 +108,7 @@ class _EditUserProfileFormState extends State<EditUserProfileForm> {
                       _conUserName.clear();
                     },
                     child: const Text(
-                        style: TextStyle(
-                          fontFamily: "Poppins"
-                        ),"Modifica")),
+                        style: TextStyle(fontFamily: "Poppins"), "Modifica")),
               )
             ],
           ),

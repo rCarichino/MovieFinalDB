@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../resources/Texts.dart';
+import '../resources/texts.dart';
 import '../resources/dimens.dart';
 import '../resources/palette.dart';
 import 'button.dart';
