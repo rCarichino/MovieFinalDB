@@ -2,15 +2,18 @@ part of 'profile_cubit.dart';
 
 class ProfileState extends Equatable {
   final User? user;
+  final bool showPassword;
 
-  const ProfileState({required this.user});
+  const ProfileState({required this.showPassword, required this.user});
 
   factory ProfileState.initial() {
-    return ProfileState(user: FirebaseAuth.instance.currentUser);
+    return ProfileState(
+        user: FirebaseAuth.instance.currentUser, showPassword: false);
   }
 
-  ProfileState copyWith({required User? user}) => ProfileState(user: user);
+  ProfileState copyWith({User? user, bool? showPassword}) =>
+      ProfileState(user: user, showPassword: showPassword ?? this.showPassword);
 
   @override
-  List<Object?> get props => [user];
+  List<Object?> get props => [user, showPassword];
 }

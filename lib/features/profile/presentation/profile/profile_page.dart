@@ -53,7 +53,7 @@ class ProfilePage extends StatelessWidget {
               child: const EditUserProfileForm(),
             ),
             ContainerProfile(
-              dimens: MediaQuery.of(context).size.height * 0.25,
+              dimens: MediaQuery.of(context).size.height * 0.35,
               palette: Palette.background,
               child: const SendEmailVerificationForm(),
             ),

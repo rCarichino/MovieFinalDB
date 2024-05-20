@@ -48,4 +48,8 @@ class ProfileCubit extends Cubit<ProfileState> {
     response.fold((failure) => emit(state.copyWith(user: null)),
         (user) => emit(state.copyWith(user: user)));
   }
+
+  void toggleShowPassword() {
+    emit(state.copyWith(showPassword: !state.showPassword));
+  }
 }
