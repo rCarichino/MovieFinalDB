@@ -51,7 +51,11 @@ class _LoginPageState extends State<LoginPage> {
           showToast(state.error);
         }
         context.read<ProfileCubit>().getCurrentUser();
-        context.goNamed(Routes.home.name);
+
+        if (state.user != null) {
+          context.goNamed(Routes.home.name);
+        }
+
       }, builder: (context, state) {
         return Center(
           child: SingleChildScrollView(

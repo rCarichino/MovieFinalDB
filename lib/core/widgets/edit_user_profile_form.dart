@@ -4,7 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:moviedb/features/profile/presentation/profile/cubits/profile_cubit.dart';
 import 'package:moviedb/utils/validator.dart';
 
-import '../../../../../core/resources/dimens.dart';
+import '../resources/dimens.dart';
 
 class EditUserProfileForm extends StatefulWidget {
   const EditUserProfileForm({super.key});

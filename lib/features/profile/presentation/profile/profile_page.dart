@@ -2,18 +2,16 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-import 'package:moviedb/core/widgets/button.dart';
 import 'package:moviedb/features/profile/presentation/profile/cubits/profile_cubit.dart';
-import 'package:moviedb/features/profile/presentation/profile/widgets/container_profile.dart';
-import 'package:moviedb/features/profile/presentation/profile/widgets/delete_user_dialog_profile.dart';
-import 'package:moviedb/features/profile/presentation/profile/widgets/delete_user_section.dart';
-import 'package:moviedb/features/profile/presentation/profile/widgets/send_email_verification_form.dart';
-import 'package:moviedb/features/profile/presentation/profile/widgets/edit_user_profile_form.dart';
+import 'package:moviedb/core/widgets/container_profile.dart';
+import 'package:moviedb/core/widgets/edit_user_profile_form.dart';
 
 import '../../../../core/resources/dimens.dart';
 import '../../../../core/resources/palette.dart';
 import '../../../../core/routes/app_routes.dart';
 import '../../../../core/widgets/bottom_navigation_bar.dart';
+import '../../../../core/widgets/delete_user_section.dart';
+import '../../../../core/widgets/send_email_verification_form.dart';
 import '../../../auth/presentation/login/cubits/login_cubit.dart';
 
 class ProfilePage extends StatelessWidget {
@@ -62,7 +60,10 @@ class ProfilePage extends StatelessWidget {
             ContainerProfile(
               dimens: MediaQuery.of(context).size.height * 0.181,
               palette: Palette.card,
-              child: DeleteUserSection(),
+              child: Padding(
+                padding: EdgeInsets.only(top: Dimens.space8),
+                child: const DeleteUserSection(),
+              ),
             ),
           ]),
         ),

@@ -53,12 +53,15 @@ class _RegistrationPageState extends State<RegistrationPage> {
         if (state.error.isNotEmpty) {
           showToast(state.error);
         }
+
         context.read<LoginCubit>().login(
               email: _conEmail.text,
               password: _conPassword.text,
             );
         context.read<ProfileCubit>().getCurrentUser();
-        context.goNamed(Routes.home.name);
+        if (state.userCredential != null) {
+          context.goNamed(Routes.home.name);
+        }
       }, builder: (context, state) {
         return Center(
           child: SingleChildScrollView(

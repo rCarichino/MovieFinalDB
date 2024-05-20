@@ -5,7 +5,7 @@ import 'package:moviedb/core/resources/palette.dart';
 import 'package:moviedb/features/profile/presentation/profile/cubits/profile_cubit.dart';
 import 'package:moviedb/utils/validator.dart';
 
-import '../../../../../core/widgets/spacer_v.dart';
+import 'spacer_v.dart';
 
 class SendEmailVerificationForm extends StatefulWidget {
   const SendEmailVerificationForm({super.key});
