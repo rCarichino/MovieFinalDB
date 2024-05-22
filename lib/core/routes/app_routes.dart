@@ -7,6 +7,7 @@ import 'package:moviedb/features/movie/presentation/details/detail_page.dart';
 import 'package:moviedb/features/movie/presentation/list/list_page.dart';
 import 'package:moviedb/features/profile/presentation/profile/profile_page.dart';
 import 'package:moviedb/features/splashscreen/splash_screen_page.dart';
+import 'package:moviedb/features/userfavorites/presentation/favmovielist/fav_movie_page.dart';
 
 import '../../features/auth/presentation/login/login_page.dart';
 
@@ -17,7 +18,8 @@ enum Routes {
   register("/auth/registration"),
   details("/details/:id"),
   profile("/profile"),
-  home("/home");
+  home("/home"),
+  userFavMovies('/userFavMovies');
 
   const Routes(this.path);
 
@@ -64,6 +66,11 @@ class AppRoute {
           path: Routes.home.path,
           name: Routes.home.name,
           builder: (context, state) => const ListPage(),
+        ),
+        GoRoute(
+          path: Routes.userFavMovies.path,
+          name: Routes.userFavMovies.name,
+          builder: (context, state) => const FavMoviePage(),
         ),
       ],
       initialLocation: Routes.splashScreen.path,

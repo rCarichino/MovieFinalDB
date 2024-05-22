@@ -95,3 +95,12 @@ class EditUserProfileFailure extends Failure {
     }
   }
 }
+
+class FirestoreFailure extends Failure {
+  final String message;
+
+  FirestoreFailure({required this.message}) : super([message]);
+
+  @override
+  String toString() => 'FirestoreFailure: $message';
+}

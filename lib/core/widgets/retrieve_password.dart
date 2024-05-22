@@ -3,7 +3,6 @@ import 'dart:io';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:go_router/go_router.dart';
 import 'package:moviedb/features/auth/presentation/login/cubits/login_cubit.dart';
 
 void retrievePassword(BuildContext context) {

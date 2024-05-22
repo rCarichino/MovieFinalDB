@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -6,6 +7,7 @@ import 'package:moviedb/core/routes/app_routes.dart';
 import 'package:moviedb/features/auth/presentation/login/cubits/login_cubit.dart';
 import 'package:moviedb/features/auth/presentation/registration/cubits/registration_cubit.dart';
 import 'package:moviedb/features/profile/presentation/profile/cubits/profile_cubit.dart';
+import 'package:moviedb/features/userfavorites/presentation/favmovielist/cubits/fav_movie_cubit.dart';
 import 'core/resources/styles.dart';
 import 'dependencies_injection.dart';
 import 'features/movie/presentation/list/cubits/list_cubit.dart';
@@ -15,6 +17,9 @@ Future<void> main() async {
   await dotenv.load(fileName: '.env');
   await serviceLocator();
   await Firebase.initializeApp();
+  FirebaseFirestore.instance.settings = const Settings(
+    persistenceEnabled: true
+  );
   runApp(const MyApp());
 }
 
@@ -37,6 +42,9 @@ class MyApp extends StatelessWidget {
         BlocProvider(
           create: (context) => getIt<ProfileCubit>(),
         ),
+        BlocProvider(
+            create: (context) => getIt<FavMovieCubit>(),
+        )
       ],
       child: SafeArea(
         child: MaterialApp.router(

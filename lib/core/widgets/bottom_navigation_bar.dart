@@ -19,7 +19,15 @@ BottomNavigationBar bottomNavigationBar(BuildContext context) {
                 context.goNamed(Routes.profile.name);
               }
           ),
-          label: "Profile")
+          label: "Profile"),
+      BottomNavigationBarItem(
+          icon: IconButton(
+              icon: const Icon(Icons.favorite),
+              onPressed: () {
+                context.goNamed(Routes.userFavMovies.name);
+              }
+          ),
+          label: "Favorities")
     ],
     currentIndex: _selectedIndex(context),
     selectedItemColor: Colors.red[800],
@@ -31,6 +39,9 @@ int _selectedIndex(BuildContext context) {
   final currentLocation = ModalRoute.of(context)!.settings.name!;
   if (currentLocation == "home") {
     return 0;
+  }
+  if(currentLocation == "userFavMovies"){
+    return 2;
   }
   return 1;
 }
