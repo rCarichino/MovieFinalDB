@@ -88,6 +88,5 @@ class AppRoute {
         if (isProfilePage && FirebaseAuth.instance.currentUser == null) {
           return Routes.login.path;
         }
-
       });
 }

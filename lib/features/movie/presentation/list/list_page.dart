@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:go_router/go_router.dart';
 import 'package:moviedb/core/resources/palette.dart';
 
 import '../../../../core/resources/dimens.dart';
 import '../../../../core/resources/images.dart';
-import '../../../../core/routes/app_routes.dart';
 import '../../../../core/widgets/bottom_navigation_bar.dart';
 import '../../../../core/widgets/grid_view_movie.dart';
 import '../../../../core/widgets/list_view_movie.dart';

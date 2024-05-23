@@ -1,4 +1,3 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -11,8 +10,6 @@ import '../../../../core/resources/dimens.dart';
 import '../../../../core/resources/images.dart';
 import '../../../../core/resources/palette.dart';
 import '../../../../core/routes/app_routes.dart';
-import '../../../../core/widgets/button.dart';
-import '../../../../core/widgets/loading.dart';
 
 class FavMoviePage extends StatelessWidget {
   const FavMoviePage({super.key});

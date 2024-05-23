@@ -4,9 +4,9 @@ import 'package:equatable/equatable.dart';
 import 'package:moviedb/core/error/failure.dart';
 import 'package:moviedb/features/userfavorites/domain/entities/user_fav_ent.dart';
 
-import '../../../domain/repositories/usecases/add_to_fav.dart';
-import '../../../domain/repositories/usecases/get_from_fav.dart';
-import '../../../domain/repositories/usecases/remove_from_fav.dart';
+import '../../../domain/usecases/add_to_fav.dart';
+import '../../../domain/usecases/get_from_fav.dart';
+import '../../../domain/usecases/remove_from_fav.dart';
 
 part 'fav_movie_state.dart';
 

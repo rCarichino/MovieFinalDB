@@ -1,11 +1,9 @@
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:moviedb/core/widgets/fav_positioned.dart';
 import 'package:moviedb/features/movie/presentation/list/cubits/list_cubit.dart';
-import 'package:moviedb/features/userfavorites/presentation/favmovielist/cubits/fav_movie_cubit.dart';
 
 import '../resources/dimens.dart';
 import '../resources/palette.dart';

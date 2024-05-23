@@ -11,8 +11,6 @@ import 'package:moviedb/features/profile/domain/usecases/do_delete_user.dart';
 import 'package:moviedb/features/profile/domain/usecases/do_edit_user_profile.dart';
 import 'package:moviedb/features/profile/domain/usecases/do_reset_params.dart';
 import 'package:moviedb/features/profile/presentation/profile/cubits/profile_cubit.dart';
-import 'package:moviedb/features/userfavorites/domain/repositories/usecases/add_to_fav.dart';
-import 'package:moviedb/features/userfavorites/domain/repositories/usecases/remove_from_fav.dart';
 import 'package:moviedb/features/userfavorites/domain/repositories/user_fav_repository.dart';
 import 'package:moviedb/features/userfavorites/presentation/favmovielist/cubits/fav_movie_cubit.dart';
 
@@ -25,7 +23,9 @@ import 'features/movie/domain/usecases/get_searched_movie.dart';
 import 'features/profile/data/repositories/profile_repository_impl.dart';
 import 'features/profile/domain/repositories/profile_repository.dart';
 import 'features/userfavorites/data/repositories/user_fav_repository_impl.dart';
-import 'features/userfavorites/domain/repositories/usecases/get_from_fav.dart';
+import 'features/userfavorites/domain/usecases/add_to_fav.dart';
+import 'features/userfavorites/domain/usecases/get_from_fav.dart';
+import 'features/userfavorites/domain/usecases/remove_from_fav.dart';
 
 GetIt getIt = GetIt.instance;
 
@@ -45,7 +45,8 @@ void _repositories() {
 
   getIt.registerLazySingleton<AuthRepository>(() => AuthRepositoryImpl());
   getIt.registerLazySingleton<ProfileRepository>(() => ProfileRepositoryImpl());
-  getIt.registerLazySingleton<UserFavoritiesRepository>(() => UserFavoritiesRepositoryImpl());
+  getIt.registerLazySingleton<UserFavoritiesRepository>(
+      () => UserFavoritiesRepositoryImpl());
 }
 
 /// Register dataSources
@@ -70,9 +71,15 @@ void _useCase() {
 }
 
 void _cubit() {
-  getIt.registerFactory(() => ListCubit(getPopularMovie: getIt(), getSearchedMovie: getIt()));
-  getIt.registerFactory(() => LoginCubit(loginUser: getIt(), changePassword: getIt()));
+  getIt.registerFactory(
+      () => ListCubit(getPopularMovie: getIt(), getSearchedMovie: getIt()));
+  getIt.registerFactory(
+      () => LoginCubit(loginUser: getIt(), changePassword: getIt()));
   getIt.registerFactory(() => RegistrationCubit(createUser: getIt()));
-  getIt.registerFactory(() => ProfileCubit(doResetParams: getIt(), doDeleteUser: getIt(), doEditUserProfile: getIt()));
-  getIt.registerFactory(() => FavMovieCubit(removeFromFav: getIt(), addToFav: getIt(), getFromFav: getIt()));
+  getIt.registerFactory(() => ProfileCubit(
+      doResetParams: getIt(),
+      doDeleteUser: getIt(),
+      doEditUserProfile: getIt()));
+  getIt.registerFactory(() => FavMovieCubit(
+      removeFromFav: getIt(), addToFav: getIt(), getFromFav: getIt()));
 }
