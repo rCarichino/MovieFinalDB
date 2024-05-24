@@ -26,9 +26,7 @@ class GridViewMovie extends StatelessWidget {
               "/${Routes.details.name}/${index.toString()}";
           context.go(detailsRoute);
         },
-        child: Stack(
-          alignment: const Alignment(0,0),
-            children: [
+        child: Stack(alignment: const Alignment(0, 0), children: [
           Container(
             padding: EdgeInsets.all(Dimens.space6),
             color: Palette.cardDark,
@@ -44,7 +42,7 @@ class GridViewMovie extends StatelessWidget {
                     ? 'https://image.tmdb.org/t/p/w500${context.read<ListCubit>().state.movie[index].posterPath}'
                     : "https://springerhealthcare.it/GIHTAD/wp-content/uploads/2021/03/placeholder.jpg"),
           ),
-          FavPositioned(index: index)
+          FavPositioned(index: index, right: 33)
         ]),
       ),
       itemCount: context.read<ListCubit>().state.movie.length,

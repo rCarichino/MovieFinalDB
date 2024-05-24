@@ -40,7 +40,7 @@ class ListViewMovie extends StatelessWidget {
                           ? 'https://image.tmdb.org/t/p/w500${context.read<ListCubit>().state.movie[index].posterPath}'
                           : "https://springerhealthcare.it/GIHTAD/wp-content/uploads/2021/03/placeholder.jpg"),
                 ),
-                FavPositioned(index: index)
+                FavPositioned(index: index, right: 0)
               ]),
             ),
         separatorBuilder: (context, index) => const Divider(),

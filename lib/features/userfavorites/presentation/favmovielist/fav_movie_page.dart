@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:moviedb/core/widgets/bottom_navigation_bar.dart';
 import 'package:moviedb/core/widgets/spacer_h.dart';
+import 'package:moviedb/core/widgets/spacer_v.dart';
 import 'package:moviedb/features/userfavorites/presentation/favmovielist/cubits/fav_movie_cubit.dart';
 
 import '../../../../core/resources/dimens.dart';
@@ -18,7 +19,12 @@ class FavMoviePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Favorities"),
+        title: Text(
+            style: Theme.of(context)
+                .textTheme
+                .headlineMedium!
+                .copyWith(fontFamily: "Poppins"),
+            "Favorities"),
       ),
       body: Column(
         children: [
@@ -34,28 +40,49 @@ class FavMoviePage extends StatelessWidget {
             }
             if (state.movies.isNotEmpty && !state.isLoading) {
               return Container(
+                padding:
+                    const EdgeInsets.symmetric(vertical: 20, horizontal: 10),
                 width: MediaQuery.of(context).size.width,
                 height: 300,
-                child: ListView.separated(
-                    itemBuilder: (context, index) => GestureDetector(
-                          onTap: () {
-                            final String detailsRoute =
-                                "/${Routes.details.name}/${index.toString()}";
-                            context.go(detailsRoute);
+                child: ListView.builder(
+                    itemBuilder: (context, index) => Dismissible(
+                          onDismissed: (direction) {
+                            if (direction == DismissDirection.startToEnd) {
+                              context.read<FavMovieCubit>().removeFromFavlist(
+                                  movieName: state.movies[index].movieName!);
+                            }
                           },
+                          key: ValueKey(state.movies[index]),
+                          background: Container(
+                              color: Palette.redLatte,
+                              child: const Align(
+                                alignment: Alignment.centerLeft,
+                                child: Icon(Icons.remove_circle),
+                              )),
                           child: Container(
                             padding: EdgeInsets.all(Dimens.space6),
                             color: Palette.cardDark,
                             child: Row(
                               children: [
-                                Text(state.movies[index].movieName ?? ''),
-                                SpacerH(),
-                                Text(state.movies[index].movieId ?? ''),
+                                Text(
+                                    style: Theme.of(context)
+                                        .textTheme
+                                        .titleMedium!
+                                        .copyWith(
+                                            fontFamily: "Poppins",
+                                            color: Palette.redLatte),
+                                    state.movies[index].movieName ?? ''),
+                                const SpacerH(),
+                                Text(
+                                    style: Theme.of(context)
+                                        .textTheme
+                                        .titleSmall!
+                                        .copyWith(fontFamily: "Poppins"),
+                                    state.movies[index].movieId ?? ''),
                               ],
                             ),
                           ),
                         ),
-                    separatorBuilder: (context, index) => const Divider(),
                     itemCount: state.movies.length),
               );
             }

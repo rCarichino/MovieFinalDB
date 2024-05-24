@@ -7,8 +7,9 @@ import '../resources/palette.dart';
 
 class FavPositioned extends StatelessWidget {
   final int index;
+  final double right;
 
-  const FavPositioned({super.key, required this.index});
+  const FavPositioned({super.key, required this.index, required this.right});
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +22,7 @@ class FavPositioned extends StatelessWidget {
 
     return Positioned(
       top: 0,
-      right: 0,
+      right: right,
       child: IconButton(
         onPressed: () async {
           String movieId =
